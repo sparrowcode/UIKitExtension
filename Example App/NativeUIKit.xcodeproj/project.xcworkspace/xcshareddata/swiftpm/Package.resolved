@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SparrowKit",
+        "repositoryURL": "https://github.com/ivanvorobei/SparrowKit",
+        "state": {
+          "branch": "main",
+          "revision": "f19d1178dda922e03488422e25b60151e1692860",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
