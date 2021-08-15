@@ -86,7 +86,7 @@ button.frame = .init(x: 0, y: 0, width: 300, height: button.frame.height)
 
 You definitely saw this button in the AppStore. You can use it without the icon. 
 
-<img align="left" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg" height="29"/>
+![NativeSmallActionButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg)
 
 Next code for usage:
 
