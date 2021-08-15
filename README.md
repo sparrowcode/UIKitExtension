@@ -54,9 +54,9 @@ If you prefer not to use any of dependency managers, you can integrate manually.
 
 ### NativeLargeActionButton
 
-Usually used at the bottom of the screen. You can set an icon. You can set how to change the style when you click. Supports states `disabled` and `dimmed`.
-
 <img align="right" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeLargeActionButton.svg" height="50"/>
+
+Usually used at the bottom of the screen. You can set an icon. You can set how to change the style when you click. Supports states `disabled` and `dimmed`.
 
 Next code for usage:
 
@@ -84,9 +84,9 @@ button.frame = .init(x: 0, y: 0, width: 300, height: button.frame.height)
 
 ### NativeSmallActionButton
 
-You definitely saw this button in the AppStore. You can use it without the icon. 
+<img align="right" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg" height="29"/>
 
-<img align="right" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg" height="50"/>
+You definitely saw this button in the AppStore. You can use it without the icon. 
 
 Next code for usage:
 
