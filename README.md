@@ -61,13 +61,13 @@ Usually used at the bottom of the screen. You can set an icon. You can set how t
 Next code for usage:
 
 ```swift
-// Appearance and Content
+// Set Appearance and Content
 let button = NativeLargeActionButton()
 button.setImage(UIImage.init(systemName: "plus.circle.fill")!)
 button.higlightStyle = .background
 button.applyDefaultAppearance(with: .init(content: .custom(.white), background: .tint))
 
-// or use wrapper
+// or use Wrapper
 button.set(
     title: "Large Action",
     icon: UIImage.init(systemName: "plus.circle.fill")!,
@@ -84,19 +84,20 @@ button.frame = .init(x: 0, y: 0, width: 300, height: button.frame.height)
 
 ### [NativeSmallActionButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativeSmallActionButton.swift)
 
-You definitely saw this button in the AppStore. You can use it without the icon. Supports states `disabled` and `dimmed`.
+You definitely saw this button in the AppStore. You can use it without the icon.<br>
+Supports states `disabled` and `dimmed`.
 
 ![NativeSmallActionButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg)
 
 Next code for usage:
 
 ```swift
-// Appearance and Content
+// Set Appearance and Content
 let button = NativeSmallActionButton()
 button.higlightStyle = .background
 button.applyDefaultAppearance(with: .init(content: .custom(.white), background: .tint))
 
-// or use wrapper
+// or use Wrapper
 button.set(
     title: "Edit",
     icon: nil,
