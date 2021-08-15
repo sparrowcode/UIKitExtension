@@ -52,7 +52,7 @@ If you prefer not to use any of dependency managers, you can integrate manually.
 
 ## Classes
 
-### NativeLargeActionButton
+### [NativeLargeActionButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativeLargeActionButton.swift)
 
 Usually used at the bottom of the screen. You can set an icon. You can set how to change the style when you click. Supports states `disabled` and `dimmed`.
 
@@ -82,9 +82,9 @@ button.sizeToFit()
 button.frame = .init(x: 0, y: 0, width: 300, height: button.frame.height)
 ```
 
-### NativeSmallActionButton
+### [NativeSmallActionButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativeSmallActionButton.swift)
 
-You definitely saw this button in the AppStore. You can use it without the icon. 
+You definitely saw this button in the AppStore. You can use it without the icon. Supports states `disabled` and `dimmed`.
 
 ![NativeSmallActionButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg)
 
@@ -93,14 +93,13 @@ Next code for usage:
 ```swift
 // Appearance and Content
 let button = NativeSmallActionButton()
-button.setImage(UIImage.init(systemName: "square.and.arrow.down.fill")!)
 button.higlightStyle = .background
 button.applyDefaultAppearance(with: .init(content: .custom(.white), background: .tint))
 
 // or use wrapper
 button.set(
-    title: "Small",
-    icon: UIImage.init(systemName: "square.and.arrow.down.fill")!,
+    title: "Edit",
+    icon: nil,
     colorise: .init(content: .custom(.white), background: .tint)
 )
 ```
