@@ -56,7 +56,7 @@ If you prefer not to use any of dependency managers, you can integrate manually.
 
 Usually used at the bottom of the screen. You can set an icon. You can set how to change the style when you click. Supports states `disabled` and `dimmed`.
 
-<img align="left" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeLargeActionButton.svg" height="50"/>
+![NativeLargeActionButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeLargeActionButton.svg)
 
 Next code for usage:
 
