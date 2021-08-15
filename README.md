@@ -1,6 +1,6 @@
 # NativeUIKit
 
-Mimicrated views and controls to native Apple appearance.
+Mimicrated views and controls to native Apple appearance. If you have any ideas of what elements can be added, let me know. Below you will see previews of all the elements and how to use them.
 
 If you like the project, don't forget to `put star ★`<br>Check out my other libraries:
 
@@ -23,6 +23,10 @@ If you like the project, don't forget to `put star ★`<br>Check out my other li
 - [Russian Community](#russian-community)
 
 ## Installation
+
+Ready for use on iOS 12+, tvOS 12+ & watchOS 6.0+. Works with Swift 5+. Required Xcode 12.0 and higher.
+
+<img align="right" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/spm-install-preview.png" width="520"/>
 
 ### Swift Package Manager
 
@@ -50,7 +54,62 @@ If you prefer not to use any of dependency managers, you can integrate manually.
 
 ### NativeLargeActionButton
 
+Usually used at the bottom of the screen. You can set an icon. You can set how to change the style when you click. Supports states `disabled` and `dimmed`.
+
+<img align="right" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeLargeActionButton.svg" height="50"/>
+
+Next code for usage:
+
+```swift
+// Appearance and Content
+let button = NativeLargeActionButton()
+button.setImage(UIImage.init(systemName: "plus.circle.fill")!)
+button.higlightStyle = .background
+button.applyDefaultAppearance(with: .init(content: .custom(.white), background: .tint))
+
+// or use wrapper
+button.set(
+    title: "Large Action",
+    icon: UIImage.init(systemName: "plus.circle.fill")!,
+    colorise: .init(content: .custom(.white), background: .tint)
+)
+```
+
+Button support system layouts by `sizeToFit()`. Next code allow you to layout button with cutom width:
+
+```swift
+button.sizeToFit()
+button.frame = .init(x: 0, y: 0, width: 300, height: button.frame.height)
+```
+
 ### NativeSmallActionButton
+
+You definitely saw this button in the AppStore. You can use it without the icon. 
+
+<img align="right" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg" height="50"/>
+
+Next code for usage:
+
+```swift
+// Appearance and Content
+let button = NativeSmallActionButton()
+button.setImage(UIImage.init(systemName: "square.and.arrow.down.fill")!)
+button.higlightStyle = .background
+button.applyDefaultAppearance(with: .init(content: .custom(.white), background: .tint))
+
+// or use wrapper
+button.set(
+    title: "Small",
+    icon: UIImage.init(systemName: "square.and.arrow.down.fill")!,
+    colorise: .init(content: .custom(.white), background: .tint)
+)
+```
+
+Button support system layouts by `sizeToFit()`. Next code allow you to layout button:
+
+```swift
+button.sizeToFit()
+```
 
 ## Other Projects
 
