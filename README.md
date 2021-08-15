@@ -1,6 +1,6 @@
 # NativeUIKit
 
-Mimicrated views and controls to native Apple appearance. If you have any ideas of what elements can be added, let me know. Below you will see previews of all the elements and how to use them.
+Mimicrated views and controls to native Apple appearance. If you have any ideas of what elements can be added, let me know. Below you will see [previews](#classes) of all the elements and how to use them.
 
 If you like the project, don't forget to `put star ★`<br>Check out my other libraries:
 
