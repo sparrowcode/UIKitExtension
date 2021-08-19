@@ -6,9 +6,11 @@ Mimicrated views and controls to native Apple appearance. If you have any ideas 
     <a href="#NativeAvatarView">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg">
     </a>
+    &nbsp;
     <a href="#NativeLargeActionButton">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeLargeActionButton.svg">
     </a>
+    &nbsp;
     <a href="#NativeSmallActionButton">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg">
     </a>
