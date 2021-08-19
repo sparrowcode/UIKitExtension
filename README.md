@@ -1,7 +1,6 @@
 # NativeUIKit
 
-Mimicrated views and controls to native Apple appearance. If you have any ideas of what elements can be added, let me know. Below you will see [previews](#classes) of all the elements and how to use them. 
-
+Mimicrated views and controls to native Apple appearance. If you have any ideas of what elements can be added, let me know.<br>
 Here provided all elements which available, tap for open docs for it.
 
 <p float="left" style="margin: 100px">
@@ -167,8 +166,7 @@ avatarView.frame = .init(x: 0, y: 0, width: 60, height: 60)
 
 ## Other Projects
 
-I love being helpful. Here I have provided a list of libraries that I keep up to date. For see `video previews` of libraries without install open [opensource.ivanvorobei.by](https://opensource.ivanvorobei.by) website.<br>
-I have libraries with native interface and managing permissions. Also available pack of useful extensions for boost your development process.
+I love being helpful. Here I have provided a list of libraries that I keep up to date. For see `video previews` of libraries without install open [opensource.ivanvorobei.by](https://opensource.ivanvorobei.by) website.
 
 <p float="left">
     <a href="https://opensource.ivanvorobei.by">
