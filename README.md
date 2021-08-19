@@ -1,6 +1,8 @@
 # NativeUIKit
 
-Mimicrated views and controls to native Apple appearance. If you have any ideas of what elements can be added, let me know. Below you will see [previews](#classes) of all the elements and how to use them. Here provided all elements which available, tap for open docs for it.
+Mimicrated views and controls to native Apple appearance. If you have any ideas of what elements can be added, let me know. Below you will see [previews](#classes) of all the elements and how to use them. 
+
+Here provided all elements which available, tap for open docs for it.
 
 <p float="left" style="margin: 100px">
     <a href="#NativeAvatarView">
@@ -15,7 +17,6 @@ Mimicrated views and controls to native Apple appearance. If you have any ideas 
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg">
     </a>
 </p>
-
 
 If you like the project, don't forget to `put star ★`<br>Check out my other libraries:
 
@@ -142,7 +143,9 @@ button.sizeToFit()
     <img align="left" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg"/>
 </a>
 
-Avatar view is container with 3 buttons - placeholder, avatar and indicator. For change avatar set `avatarAppearance`. For shor or hide edit button set `isEditable`.
+Avatar view is container with 3 buttons - placeholder, avatar and indicator. For change avatar set `avatarAppearance`. For show or hide edit button set `isEditable`.
+
+Layout availbe by size to fit for content. In this case change placeholder size to valid SFSymbol for have correct fit. By default font side is 80 point. Or you can set fixed frame and ignore fitting size.
 
 ```swift
 let avatarView = NativeAvatarView()
