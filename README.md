@@ -1,7 +1,6 @@
 # NativeUIKit
 
-Mimicrated views and controls to native Apple appearance. If you have any ideas of what elements can be added, let me know.<br>
-Here provided all elements which available, tap for open docs for it.
+Mimicrated views and controls to native Apple appearance. If you have any ideas of what elements can be added, let me know. Here provided all elements which available, tap for open docs for it.
 
 <p float="left" style="margin: 100px">
     <a href="#NativeAvatarView">
