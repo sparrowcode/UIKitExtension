@@ -4,13 +4,13 @@ Mimicrated views and controls to native Apple appearance. If you have any ideas 
 
 <p float="left">
     <a href="https://opensource.ivanvorobei.by">
+        <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg">
+    </a>
+    <a href="https://opensource.ivanvorobei.by">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeLargeActionButton.svg">
     </a>
     <a href="https://opensource.ivanvorobei.by">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg">
-    </a>
-    <a href="https://opensource.ivanvorobei.by">
-        <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg">
     </a>
 </p>
 
@@ -127,7 +127,27 @@ button.sizeToFit()
 
 ### [NativeSmallActionButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativeAvatarView.swift)
 
+Avatar view is container with 3 buttons - placeholder, avatar and indicator. For change avatar set `avatarAppearance`. For shor or hide edit button set `isEditable`.
+
 ![NativeSmallActionButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg)
+
+```swift
+let avatarView = NativeAvatarView()
+
+// You can set target, actions or even contex menu like usual button.
+avatarView.placeholderButton.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+avatarView.avatarButton.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+avatarView.indicatorButton.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+
+// For show edit button.
+avatarView.isEditable = true
+
+// Layout.
+// For fit by images:
+avatarView.sizeToFit()
+// By custom frame:
+avatarView.frame = .init(x: 0, y: 0, width: 60, height: 60)
+```
 
 ## Other Projects
 
