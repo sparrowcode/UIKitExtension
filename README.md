@@ -2,7 +2,7 @@
 
 Mimicrated views and controls to native Apple appearance. If you have any ideas of what elements can be added, let me know. Below you will see [previews](#classes) of all the elements and how to use them. Here provided all elements which available, tap for open docs for it.
 
-<p float="left" style="margin: 100px;">
+<p float="left" style="margin: 100">
     <a href="#NativeAvatarView">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg">
     </a>
