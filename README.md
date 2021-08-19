@@ -134,15 +134,13 @@ button.sizeToFit()
 
 ### [NativeAvatarView](https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativeAvatarView.swift)
 
-<img align="left" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg"/>
+Avatar view is container with 3 buttons - placeholder, avatar and indicator. For change avatar set `avatarAppearance`. For shor or hide edit button set `isEditable`.
 
 <p float="left">
     <a href="https://opensource.ivanvorobei.by">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg">
     </a>
 </p>
-
-Avatar view is container with 3 buttons - placeholder, avatar and indicator. For change avatar set `avatarAppearance`. For shor or hide edit button set `isEditable`.
 
 ```swift
 let avatarView = NativeAvatarView()
