@@ -73,9 +73,11 @@ If you prefer not to use any of dependency managers, you can integrate manually.
 
 Usually used at the bottom of the screen. You can set an icon. You can set how to change the style when you click. Supports states `disabled` and `dimmed`.
 
-<a href="https://opensource.ivanvorobei.by">
-    <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeLargeActionButton.svg">
-</a>
+<p float="left">
+    <a href="https://opensource.ivanvorobei.by">
+        <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeLargeActionButton.svg">
+    </a>
+</p>
 
 Next code for usage:
 
@@ -106,9 +108,11 @@ button.frame = .init(x: 0, y: 0, width: 300, height: button.frame.height)
 You definitely saw this button in the AppStore. You can use it without the icon.<br>
 Supports states `disabled` and `dimmed`.
 
-<a href="https://opensource.ivanvorobei.by">
-    <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg">
-</a>
+<p float="left">
+    <a href="https://opensource.ivanvorobei.by">
+        <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg">
+    </a>
+</p>
 
 Next code for usage:
 
@@ -134,13 +138,11 @@ button.sizeToFit()
 
 ### [NativeAvatarView](https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativeAvatarView.swift)
 
-Avatar view is container with 3 buttons - placeholder, avatar and indicator. For change avatar set `avatarAppearance`. For shor or hide edit button set `isEditable`.
+<a href="https://opensource.ivanvorobei.by">
+    <img align="left" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg"/>
+</a>
 
-<p float="left">
-    <a href="https://opensource.ivanvorobei.by">
-        <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg">
-    </a>
-</p>
+Avatar view is container with 3 buttons - placeholder, avatar and indicator. For change avatar set `avatarAppearance`. For shor or hide edit button set `isEditable`.
 
 ```swift
 let avatarView = NativeAvatarView()
