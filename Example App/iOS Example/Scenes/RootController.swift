@@ -23,4 +23,9 @@ import UIKit
 import SparrowKit
 import NativeUIKit
 
-class RootController: SPController {}
+class RootController: SPController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
