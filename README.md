@@ -2,14 +2,14 @@
 
 Mimicrated views and controls to native Apple appearance. If you have any ideas of what elements can be added, let me know. Below you will see [previews](#classes) of all the elements and how to use them. Here provided all elements which available, tap for open docs for it.
 
-<p float="left">
-    <a href="https://opensource.ivanvorobei.by">
+<p float="left" style="margin-left: 2.5em;">
+    <a href="#NativeAvatarView">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg">
     </a>
-    <a href="https://opensource.ivanvorobei.by">
+    <a href="#NativeLargeActionButton">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeLargeActionButton.svg">
     </a>
-    <a href="https://opensource.ivanvorobei.by">
+    <a href="#NativeSmallActionButton">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg">
     </a>
 </p>
@@ -125,11 +125,15 @@ Button support system layouts by `sizeToFit()`. Next code allow you to layout bu
 button.sizeToFit()
 ```
 
-### [NativeSmallActionButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativeAvatarView.swift)
+### [NativeAvatarView](https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativeAvatarView.swift)
+
+<p float="left">
+    <a href="https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativeAvatarView.swift">
+        <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg">
+    </a>
+</p>
 
 Avatar view is container with 3 buttons - placeholder, avatar and indicator. For change avatar set `avatarAppearance`. For shor or hide edit button set `isEditable`.
-
-![NativeSmallActionButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg)
 
 ```swift
 let avatarView = NativeAvatarView()
