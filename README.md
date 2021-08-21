@@ -172,7 +172,7 @@ avatarView.frame = .init(x: 0, y: 0, width: 60, height: 60)
 
 <p float="left">
     <a href="https://opensource.ivanvorobei.by">
-        <img align="left" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativePlayPauseCompactButton.svg"/>
+        <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativePlayPauseCompactButton.svg">
     </a>
 </p>
 
