@@ -14,6 +14,10 @@ Mimicrated views and controls to native Apple appearance. If you have any ideas 
     <a href="#NativeSmallActionButton">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg">
     </a>
+    &nbsp;
+    <a href="#NativePlayPauseCompactButton">
+        <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativePlayPauseCompactButton.svg">
+    </a>
 </p>
 
 If you like the project, don't forget to `put star ★`<br>Check out my other libraries:
@@ -34,6 +38,7 @@ If you like the project, don't forget to `put star ★`<br>Check out my other li
     - [NativeLargeActionButton](#NativeLargeActionButton)
     - [NativeSmallActionButton](#NativeSmallActionButton)
     - [NativeAvatarView](#NativeAvatarView)
+    - [NativePlayPauseCompactButton](#NativePlayPauseCompactButton)
 - [Other Projects](#other-projects)
 - [Russian Community](#russian-community)
 
@@ -157,10 +162,26 @@ avatarView.indicatorButton.addTarget(self, action: #selector(didTap), for: .touc
 avatarView.isEditable = true
 
 // Layout.
-// For fit by images:
+// For fit by images.
 avatarView.sizeToFit()
 // By custom frame:
 avatarView.frame = .init(x: 0, y: 0, width: 60, height: 60)
+```
+
+### [NativePlayPauseCompactButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativePlayPauseCompactButton.swift)
+
+<a href="https://opensource.ivanvorobei.by">
+    <img align="left" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativePlayPauseCompactButton.svg"/>
+</a>
+
+Simple play/pause button.
+
+```swift
+let button = NativePlayPauseCompactButton()
+// For fit to valid size.
+button.sizeToFit()
+// For change appearance.
+button.appearance = .play //.pause
 ```
 
 ## Other Projects
