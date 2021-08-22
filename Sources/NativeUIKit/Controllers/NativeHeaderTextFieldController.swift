@@ -19,28 +19,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#if canImport(UIKit) && (os(iOS))
 import UIKit
 import SparrowKit
-import NativeUIKit
 
-class RootController: SPController {
+open class NativeHeaderTextFieldController: NativeHeaderController {
     
-    let largeButton = NativeLargeActionButton()
+    // MARK: - Views
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        view.addSubview(largeButton)
-        largeButton.applyDefaultAppearance(with: .init(content: .custom(.white), background: .tint))
-        largeButton.setTitle("Title")
-        
+    public let textField = NativeLargeTextField().do {
+        $0.returnKeyType = .done
+        $0.autocapitalizationType = .words
     }
     
-    override func viewDidLayoutSubviews() {
+    // MARK: - Lifecycle
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        }
+        view.addSubview(scrollView)
+        scrollView.addSubview(textField)
+    }
+    
+    // MARK: - Layout
+    
+    open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        largeButton.sizeToFit()
-        largeButton.frame.setWidth(view.layoutWidth)
-        largeButton.setXCenter()
-        largeButton.frame.origin.y = 200
+        textField.layout(y:  headerView.frame.maxY + 24)
+        scrollView.contentSize = .init(width: view.frame.width, height: textField.frame.maxY)
     }
 }
+#endif

@@ -46,7 +46,7 @@ open class NativeSmallActionButton: SPDimmedButton {
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline, weight: .bold, addPoints: -1)
         titleLabel?.numberOfLines = 1
         titleImageInset = 6
-        contentEdgeInsets = .init(horizontal: 10, vertical: .zero)
+        contentEdgeInsets = .init(horizontal: 10, vertical: 6)
     }
     
     // MARK: - Public
@@ -70,17 +70,18 @@ open class NativeSmallActionButton: SPDimmedButton {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        layer.cornerRadius = frame.height / 2
+        roundCorners()
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         let superSize = super.sizeThatFits(size)
         var width = superSize.width
-        if width < 70 { width = 70 }
+        let minimumWidth: CGFloat = 70
+        if width < minimumWidth { width = minimumWidth }
         
-        var height = superSize.height + 12
+        var height = superSize.height
         if let titleLabel = titleLabel, let imageView = imageView, let _ = imageView.image {
-            if titleLabel.frame.height > 0 && imageView.frame.height > 0 {
+            if titleLabel.frame.height > .zero && imageView.frame.height > .zero {
                 let imageCorrection = imageView.frame.height - titleLabel.frame.height
                 height -= imageCorrection
             }

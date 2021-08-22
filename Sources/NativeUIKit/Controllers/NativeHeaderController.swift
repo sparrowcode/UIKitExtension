@@ -19,28 +19,38 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#if canImport(UIKit) && (os(iOS))
 import UIKit
 import SparrowKit
-import NativeUIKit
 
-class RootController: SPController {
+open class NativeHeaderController: NativeHidableNavigationScrollController {
     
-    let largeButton = NativeLargeActionButton()
+    // MARK: - Views
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        view.addSubview(largeButton)
-        largeButton.applyDefaultAppearance(with: .init(content: .custom(.white), background: .tint))
-        largeButton.setTitle("Title")
-        
+    public let headerView: NativeModalHeaderView
+    
+    // MARK: - Init
+    
+    public init(image: UIImage?, title: String, subtitle: String) {
+        self.headerView = NativeModalHeaderView(image: image, title: title, subtitle: subtitle)
+        super.init()
     }
     
-    override func viewDidLayoutSubviews() {
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Lifecycle
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        scrollView.addSubview(headerView)
+    }
+    
+    open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        largeButton.sizeToFit()
-        largeButton.frame.setWidth(view.layoutWidth)
-        largeButton.setXCenter()
-        largeButton.frame.origin.y = 200
+        headerView.layout(y: .zero)
+        scrollView.contentSize = .init(width: view.frame.width, height: headerView.frame.maxY)
     }
 }
+#endif

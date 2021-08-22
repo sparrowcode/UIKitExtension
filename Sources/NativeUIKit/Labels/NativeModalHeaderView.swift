@@ -25,12 +25,18 @@ import SparrowKit
 
 /**
  NativeUIKit: Usually use in modal screen with large title and subtitle.
+ Image is optional.
  */
-open class NativeHeaderTitlesView: SPView {
+open class NativeModalHeaderView: SPView {
     
     // MARK: - Views
     
-    open var titleLabel = SPLabel().do {
+    public let iconImageView = SPImageView().do {
+        $0.contentMode = .scaleAspectFit
+        $0.tintColor = .tint
+    }
+    
+    public let titleLabel = SPLabel().do {
         $0.numberOfLines = .zero
         $0.font = UIFont.preferredFont(forTextStyle: .largeTitle, weight: .bold)
         if #available(iOS 13.0, *) {
@@ -41,7 +47,7 @@ open class NativeHeaderTitlesView: SPView {
         $0.textAlignment = .center
     }
     
-    open var subtitleLabel = SPLabel().do {
+    public let subtitleLabel = SPLabel().do {
         $0.numberOfLines = .zero
         $0.font = UIFont.preferredFont(forTextStyle: .body)
         if #available(iOS 13.0, *) {
@@ -58,10 +64,11 @@ open class NativeHeaderTitlesView: SPView {
         super.init()
     }
     
-    public init(title: String, subtitle: String) {
+    public init(image: UIImage?, title: String, subtitle: String) {
         super.init()
         titleLabel.text = title
         subtitleLabel.text = subtitle
+        iconImageView.image = image
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -74,22 +81,51 @@ open class NativeHeaderTitlesView: SPView {
         layoutMargins = .zero
         addSubview(titleLabel)
         addSubview(subtitleLabel)
+        addSubview(iconImageView)
     }
     
     // MARK: - Layout
     
+    /**
+     NativeUIKit: Layout wrapper. Native way for layout button.
+     */
+    open func layout(y: CGFloat) {
+        guard let superview = self.superview else { return }
+        let width = min(superview.readableWidth, NativeLayout.Sizes.not_actionable_area_maximum_width)
+        setWidthAndFit(width: width)
+        superview.setXCenter()
+        frame.origin.y = y
+    }
+    
+    /**
+     NativeUIKit: Layout wrapper. Native way for layout button.
+     */
+    open func layout(maxY: CGFloat) {
+        guard let superview = self.superview else { return }
+        let width = min(superview.readableWidth, NativeLayout.Sizes.not_actionable_area_maximum_width)
+        setWidthAndFit(width: width)
+        superview.setXCenter()
+        frame.setMaxY(maxY)
+    }
+    
     open override func layoutSubviews() {
         super.layoutSubviews()
-        titleLabel.layoutDynamicHeight(x: .zero, y: layoutMargins.top, width: layoutWidth)
+        iconImageView.sizeToFit()
+        iconImageView.setXCenter()
+        iconImageView.frame.origin.y = layoutMargins.top
+        
+        if let _ = iconImageView.image {
+            titleLabel.layoutDynamicHeight(x: .zero, y: iconImageView.frame.maxY + 12, width: layoutWidth)
+        } else {
+            titleLabel.layoutDynamicHeight(x: .zero, y: .zero, width: layoutWidth)
+        }
+        
         subtitleLabel.layoutDynamicHeight(x: .zero, y: titleLabel.frame.maxY + 4, width: titleLabel.frame.width)
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let superSize = super.sizeThatFits(size)
-        let newWidth = min(superSize.width, 408)
-        frame.setWidth(newWidth)
         layoutSubviews()
-        return .init(width: newWidth, height: subtitleLabel.frame.maxY + layoutMargins.bottom)
+        return .init(width: size.width, height: subtitleLabel.frame.maxY + layoutMargins.bottom)
     }
 }
 #endif

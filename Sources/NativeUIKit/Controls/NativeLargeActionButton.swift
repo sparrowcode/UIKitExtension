@@ -45,8 +45,9 @@ open class NativeLargeActionButton: SPDimmedButton {
         super.commonInit()
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline, addPoints: 1)
         titleLabel?.numberOfLines = 1
+        highlightOpacity = NativeAppearance.actionable_element_highlight_opacity
         titleImageInset = 6
-        contentEdgeInsets = .init(horizontal: 10, vertical: .zero)
+        contentEdgeInsets = .init(horizontal: 10, vertical: 14)
     }
     
     // MARK: - Public
@@ -68,18 +69,42 @@ open class NativeLargeActionButton: SPDimmedButton {
     
     // MARK: - Layout
     
+    /**
+     NativeUIKit: Layout wrapper. Native way for layout button.
+     */
+    open func layout(y: CGFloat) {
+        guard let superview = self.superview else { return }
+        sizeToFit()
+        let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
+        frame.setWidth(width)
+        superview.setXCenter()
+        frame.origin.y = y
+    }
+    
+    /**
+     NativeUIKit: Layout wrapper. Native way for layout button.
+     */
+    open func layout(maxY: CGFloat) {
+        guard let superview = self.superview else { return }
+        sizeToFit()
+        let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
+        frame.setWidth(width)
+        superview.setXCenter()
+        frame.setMaxY(maxY)
+    }
+    
     open override func layoutSubviews() {
         super.layoutSubviews()
-        roundCorners(radius: 15)
+        roundCorners(radius: NativeAppearance.Corners.readable_area)
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         let superSize = super.sizeThatFits(size)
         let width = superSize.width
         
-        var height = superSize.height + 28
+        var height = superSize.height
         if let titleLabel = titleLabel, let imageView = imageView, let _ = imageView.image {
-            if titleLabel.frame.height > 0 && imageView.frame.height > 0 {
+            if titleLabel.frame.height > .zero && imageView.frame.height > .zero {
                 let imageCorrection = imageView.frame.height - titleLabel.frame.height
                 height -= imageCorrection
             }

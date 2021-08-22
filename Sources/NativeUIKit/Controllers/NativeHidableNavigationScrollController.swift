@@ -33,10 +33,21 @@ open class NativeHidableNavigationScrollController: SPScrollController {
      If set large value, for navigation hide take more scroll distance.
      Default value is `16`.
      */
-    open var heightForChangeAppearanceNavigation: CGFloat = 16 {
+    open var heightForChangeAppearanceNavigation: CGFloat = defaultHeightForChangeAppearanceNavigation {
         didSet {
+            scrollView.contentInset.top = heightForChangeAppearanceNavigation
+            scrollView.contentInset.bottom = NativeLayout.Spaces.Scroll.bottom_inset_reach_end
             scrollView.delegate?.scrollViewDidScroll?(self.scrollView)
         }
+    }
+    
+    private static var defaultHeightForChangeAppearanceNavigation: CGFloat = 16
+    
+    // MARK: - Lifecycle
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        heightForChangeAppearanceNavigation = Self.defaultHeightForChangeAppearanceNavigation
     }
     
     // MARK: - UIScrollViewDelegate
