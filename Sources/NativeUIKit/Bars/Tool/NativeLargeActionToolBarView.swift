@@ -23,34 +23,31 @@
 import UIKit
 import SparrowKit
 
-open class NativeHeaderController: NativeScrollController {
+open class NativeLargeActionToolBarView: NativeMimicrateToolBarView {
     
     // MARK: - Views
     
-    public let headerView: NativeModalHeaderView
+    public let actionButton = NativeLargeActionButton().do {
+        $0.applyDefaultAppearance(with: .init(content: .white, background: .tint))
+    }
     
     // MARK: - Init
     
-    public init(image: UIImage?, title: String, subtitle: String) {
-        self.headerView = NativeModalHeaderView(image: image, title: title, subtitle: subtitle)
-        super.init(navigationScrollBehavior: .hidable)
+    open override func commonInit() {
+        super.commonInit()
+        addSubview(actionButton)
     }
     
-    public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    // MARK: - Layout
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        actionButton.layout(y: layoutMargins.top)
     }
     
-    // MARK: - Lifecycle
-    
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        scrollView.addSubview(headerView)
-    }
-    
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        headerView.layout(y: .zero)
-        scrollView.contentSize = .init(width: view.frame.width, height: headerView.frame.maxY)
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        layoutSubviews()
+        return .init(width: size.width, height: actionButton.frame.maxY + layoutMargins.bottom)
     }
 }
 #endif

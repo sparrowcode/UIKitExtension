@@ -23,16 +23,32 @@
 import UIKit
 import SparrowKit
 
-open class NativeMimicrateToolBarView: NativeMimicrateBarView {
+open class NativeSmallActionToolBarView: NativeMimicrateToolBarView {
+    
+    public let actionButton = SPDimmedButton().do {
+        $0.applyDefaultAppearance(with: .init(content: .tint, background: .clear))
+        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3, weight: .semibold)
+    }
     
     // MARK: - Init
     
-    public init() {
-        super.init(borderPosition: .top)
+    open override func commonInit() {
+        super.commonInit()
+        addSubview(actionButton)
     }
     
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    // MARK: - Layout
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        actionButton.setWidthAndFit(width: layoutWidth)
+        actionButton.frame.origin.y = layoutMargins.top + 16
+        actionButton.setXCenter()
+    }
+    
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        layoutSubviews()
+        return .init(width: size.width, height: actionButton.frame.maxY + layoutMargins.bottom)
     }
 }
 #endif

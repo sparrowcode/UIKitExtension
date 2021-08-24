@@ -77,7 +77,7 @@ open class NativeLargeActionButton: SPDimmedButton {
         sizeToFit()
         let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
         frame.setWidth(width)
-        superview.setXCenter()
+        setXCenter()
         frame.origin.y = y
     }
     
@@ -89,7 +89,7 @@ open class NativeLargeActionButton: SPDimmedButton {
         sizeToFit()
         let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
         frame.setWidth(width)
-        superview.setXCenter()
+        setXCenter()
         frame.setMaxY(maxY)
     }
     

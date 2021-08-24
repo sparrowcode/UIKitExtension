@@ -23,34 +23,30 @@
 import UIKit
 import SparrowKit
 
-open class NativeHeaderController: NativeScrollController {
-    
-    // MARK: - Views
-    
-    public let headerView: NativeModalHeaderView
+open class NativeMimicrateToolBarView: NativeMimicrateBarView {
     
     // MARK: - Init
     
-    public init(image: UIImage?, title: String, subtitle: String) {
-        self.headerView = NativeModalHeaderView(image: image, title: title, subtitle: subtitle)
-        super.init(navigationScrollBehavior: .hidable)
+    public init() {
+        super.init(borderPosition: .top)
     }
     
-    public required init?(coder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Lifecycle
-    
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        scrollView.addSubview(headerView)
+    open override func commonInit() {
+        super.commonInit()
+        insetsLayoutMarginsFromSafeArea = false
     }
     
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        headerView.layout(y: .zero)
-        scrollView.contentSize = .init(width: view.frame.width, height: headerView.frame.maxY)
+    // MARK: - Layout
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        guard let superview = superview else { return }
+        let contentWidth = min(440, superview.readableWidth)
+        layoutMargins = .init(horizontal: (frame.width - contentWidth) / 2, vertical: 16)
     }
 }
 #endif

@@ -23,34 +23,43 @@
 import UIKit
 import SparrowKit
 
-open class NativeHeaderController: NativeScrollController {
+open class NativeSkipableLargeActionToolBarView: NativeMimicrateToolBarView {
     
     // MARK: - Views
     
-    public let headerView: NativeModalHeaderView
+    public let actionButton = NativeLargeActionButton().do {
+        $0.applyDefaultAppearance(with: .init(content: .white, background: .tint))
+    }
+    
+    public let skipButton = SPDimmedButton().do {
+        if #available(iOS 13.0, *) {
+            $0.applyDefaultAppearance(with: .init(content: .tertiaryLabel, background: .clear))
+        }
+        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body, weight: .semibold)
+    }
     
     // MARK: - Init
     
-    public init(image: UIImage?, title: String, subtitle: String) {
-        self.headerView = NativeModalHeaderView(image: image, title: title, subtitle: subtitle)
-        super.init(navigationScrollBehavior: .hidable)
+    open override func commonInit() {
+        super.commonInit()
+        addSubview(actionButton)
+        addSubview(skipButton)
     }
     
-    public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    // MARK: - Layout
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        actionButton.layout(y: layoutMargins.top)
+        
+        skipButton.setWidthAndFit(width: layoutWidth)
+        skipButton.frame.origin.y = actionButton.frame.maxY + 12
+        skipButton.setXCenter()
     }
     
-    // MARK: - Lifecycle
-    
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        scrollView.addSubview(headerView)
-    }
-    
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        headerView.layout(y: .zero)
-        scrollView.contentSize = .init(width: view.frame.width, height: headerView.frame.maxY)
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        layoutSubviews()
+        return .init(width: size.width, height: skipButton.frame.maxY + layoutMargins.bottom)
     }
 }
 #endif
