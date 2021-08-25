@@ -26,7 +26,7 @@ import SparrowKit
 /**
  NativeUIKit: Hide navigation bar when scrolling to up.
  */
-open class NativeScrollController: SPScrollController, UIScrollViewDelegate {
+open class NativeScrollController: SPScrollController {
     
     // MARK: - Data
     
