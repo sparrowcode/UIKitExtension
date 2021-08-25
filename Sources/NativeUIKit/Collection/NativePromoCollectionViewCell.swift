@@ -22,34 +22,38 @@
 #if canImport(UIKit) && (os(iOS))
 import UIKit
 import SparrowKit
+import SPPerspective
 
-open class NativeMimicrateToolBarView: NativeMimicrateBarView {
+open class NativePromoCollectionViewCell: SPCollectionViewCell {
+    
+    // MARK: - Views
+    
+    public let promoView = NativePromoView()
     
     // MARK: - Init
     
-    public init() {
-        super.init(borderPosition: .top)
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     open override func commonInit() {
         super.commonInit()
-        insetsLayoutMarginsFromSafeArea = false
-        layoutMargins.top = 16
+        layoutMargins = .zero
+        contentView.addSubview(promoView)
+    }
+    
+    open override func prepareForReuse() {
+        super.prepareForReuse()
+        promoView.iconView.resetPerspective()
     }
     
     // MARK: - Layout
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        guard let superview = superview else { return }
-        let contentWidth = min(440, superview.readableWidth)
-        let horizontalMargin = (frame.width - contentWidth) / 2
-        layoutMargins.left = horizontalMargin
-        layoutMargins.right = horizontalMargin
+        promoView.layout(y: contentView.layoutMargins.top)
+    }
+    
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        let superSize = super.sizeThatFits(size)
+        layoutSubviews()
+        return .init(width: superSize.width, height: promoView.frame.maxY + contentView.layoutMargins.bottom)
     }
 }
 #endif

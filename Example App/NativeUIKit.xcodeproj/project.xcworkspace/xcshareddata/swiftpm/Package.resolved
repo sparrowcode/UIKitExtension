@@ -9,6 +9,15 @@
           "revision": "c026fc0c4fe41c7aa4caebf692060599cd394bdd",
           "version": null
         }
+      },
+      {
+        "package": "SPPerspective",
+        "repositoryURL": "https://github.com/ivanvorobei/SPPerspective",
+        "state": {
+          "branch": null,
+          "revision": "8047f1261b2e6b2650a36f9626b8d3e428d87cc3",
+          "version": "1.3.5"
+        }
       }
     ]
   },

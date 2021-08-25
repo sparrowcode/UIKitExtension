@@ -100,16 +100,13 @@ open class NativeScrollController: SPScrollController {
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let toolBarView = toolBarView {
+            toolBarView.layoutMargins.bottom = systemSafeAreaInsets.bottom + 16
             toolBarView.setWidthAndFit(width: view.frame.width)
-            let toolBarFrameFitHeight: CGFloat = toolBarView.frame.height
-            toolBarView.frame.setHeight(toolBarFrameFitHeight + systemSafeAreaInsets.bottom)
             toolBarView.frame.setMaxY(view.frame.height)
-            additionalSafeAreaInsets = .init(
-                top: .zero,
-                left: .zero,
-                bottom: toolBarFrameFitHeight,
-                right: .zero
-            )
+            let toolBarFrameFitHeight = toolBarView.frame.height - systemSafeAreaInsets.bottom
+            if additionalSafeAreaInsets.bottom != toolBarFrameFitHeight {
+                additionalSafeAreaInsets.bottom = toolBarFrameFitHeight
+            }
         }
         
     }
