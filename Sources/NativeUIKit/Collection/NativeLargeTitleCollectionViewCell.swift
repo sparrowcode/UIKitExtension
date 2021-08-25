@@ -48,20 +48,21 @@ open class NativeLargeTitleCollectionViewCell: SPCollectionViewCell {
         addSubview(titleLabel)
     }
     
+    open override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        parentLayout = nil
+    }
+    
     // MARK: - Layout
+    
+    open weak var parentLayout: UIView?
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        var collectionView: UICollectionView?
-        if let view = superview as? UICollectionView {
-            collectionView = view
-        }
-        if let view = superview?.superview as? UICollectionView {
-            collectionView = view
-        }
-        if let parent = collectionView {
-            contentView.layoutMargins.left = parent.layoutMargins.left
-            contentView.layoutMargins.right = parent.layoutMargins.right
+        if let parentLayout = parentLayout {
+            contentView.layoutMargins.left = parentLayout.layoutMargins.left
+            contentView.layoutMargins.right = parentLayout.layoutMargins.right
         }
         titleLabel.layoutDynamicHeight(
             x: contentView.layoutMargins.left,
