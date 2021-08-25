@@ -93,7 +93,7 @@ open class NativeModalHeaderView: SPView {
         guard let superview = self.superview else { return }
         let width = min(superview.readableWidth, NativeLayout.Sizes.not_actionable_area_maximum_width)
         setWidthAndFit(width: width)
-        superview.setXCenter()
+        setXCenter()
         frame.origin.y = y
     }
     
@@ -104,7 +104,7 @@ open class NativeModalHeaderView: SPView {
         guard let superview = self.superview else { return }
         let width = min(superview.readableWidth, NativeLayout.Sizes.not_actionable_area_maximum_width)
         setWidthAndFit(width: width)
-        superview.setXCenter()
+        setXCenter()
         frame.setMaxY(maxY)
     }
     
