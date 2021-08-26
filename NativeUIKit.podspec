@@ -15,5 +15,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Sources/NativeUIKit/**/*.swift'
   s.dependency 'SparrowKit'
+  s.dependency 'SPPerspective'
 
 end
