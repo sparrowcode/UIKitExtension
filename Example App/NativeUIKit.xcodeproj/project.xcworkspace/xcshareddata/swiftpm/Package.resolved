@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/ivanvorobei/SparrowKit",
         "state": {
           "branch": "main",
-          "revision": "c026fc0c4fe41c7aa4caebf692060599cd394bdd",
+          "revision": "7ec1a0ab7cd63468c54016067ed1ce3263ba70d7",
           "version": null
         }
       },
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/ivanvorobei/SPPerspective",
         "state": {
           "branch": null,
-          "revision": "8047f1261b2e6b2650a36f9626b8d3e428d87cc3",
-          "version": "1.3.5"
+          "revision": "93339eedc185f73f6fa7f75d7d6bcad95bda90e0",
+          "version": "1.3.6"
         }
       }
     ]
