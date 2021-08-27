@@ -76,7 +76,7 @@ open class NativePromoView: SPView {
         addSubview(descriptionLabel)
         addSubview(iconView)
         addSubview(button)
-        
+        areaView.layoutMargins = .init(horizontal: 24, vertical: 24)
         iconView.applyPerspective(.iOS14WidgetAnimatable)
     }
     
@@ -95,11 +95,13 @@ open class NativePromoView: SPView {
         super.layoutSubviews()
         areaView.frame = .init(x: layoutMargins.left, y: layoutMargins.top, width: layoutWidth, height: areaView.frame.height)
     
-        titleLabel.layoutDynamicHeight(width: layoutWidth)
-        titleLabel.setXCenter()
-        titleLabel.frame.origin.y = areaView.frame.origin.y + 24
+        let labelsWidth = areaView.layoutWidth
         
-        descriptionLabel.layoutDynamicHeight(width: layoutWidth)
+        titleLabel.layoutDynamicHeight(width: labelsWidth)
+        titleLabel.setXCenter()
+        titleLabel.frame.origin.y = areaView.frame.origin.y + areaView.layoutMargins.top
+        
+        descriptionLabel.layoutDynamicHeight(width: labelsWidth)
         descriptionLabel.setXCenter()
         descriptionLabel.frame.origin.y = titleLabel.frame.maxY + 3
         
