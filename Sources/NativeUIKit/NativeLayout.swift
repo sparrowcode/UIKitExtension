@@ -22,17 +22,20 @@
 #if canImport(UIKit) && (os(iOS))
 import UIKit
 
-enum NativeLayout {
+public enum NativeLayout {
     
-    enum Sizes {
+    public enum Sizes {
         
-        static var actionable_area_maximum_width: CGFloat { 408 }
-        static var not_actionable_area_maximum_width: CGFloat { 382 }
+        public static var actionable_area_maximum_width: CGFloat { 408 }
+        public static var not_actionable_area_maximum_width: CGFloat { 382 }
     }
     
-    enum Spaces {
+    public enum Spaces {
         
-        enum Scroll {
+        public static var full_screen_horizontal_margins: CGFloat { 16 }
+        public static var modal_screen_horizontal_margins: CGFloat { 20 }
+        
+        public enum Scroll {
             
             static var bottom_inset_reach_end: CGFloat { 36 }
             static var bottom_inset_when_keyboard_can_appear: CGFloat { 32 }
