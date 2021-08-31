@@ -43,6 +43,8 @@ open class NativeLargeActionButton: SPDimmedButton {
     
     open override func commonInit() {
         super.commonInit()
+        insetsLayoutMarginsFromSafeArea = false
+        preservesSuperviewLayoutMargins = false
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline, addPoints: 1)
         titleLabel?.numberOfLines = 1
         highlightOpacity = NativeAppearance.actionable_element_highlight_opacity
