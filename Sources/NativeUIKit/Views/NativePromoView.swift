@@ -123,4 +123,31 @@ open class NativePromoView: SPView {
         return .init(width: size.width, height: button.frame.maxY + layoutMargins.bottom)
     }
 }
+
+open class NativePromoContainerView: SPView {
+    
+    // MARK: - Views
+    
+    public let promoView = NativePromoView()
+    
+    // MARK: - Init
+
+    open override func commonInit() {
+        super.commonInit()
+        addSubview(promoView)
+    }
+    
+    // MARK: - Layout
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        promoView.layout(y: layoutMargins.top)
+    }
+    
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        let superSize = super.sizeThatFits(size)
+        layoutSubviews()
+        return .init(width: superSize.width, height: promoView.frame.maxY + layoutMargins.bottom)
+    }
+}
 #endif

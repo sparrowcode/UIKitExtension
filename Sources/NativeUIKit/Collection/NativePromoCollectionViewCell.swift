@@ -34,7 +34,7 @@ open class NativePromoCollectionViewCell: SPCollectionViewCell {
     
     open override func commonInit() {
         super.commonInit()
-        layoutMargins = .zero
+        contentView.layoutMargins = .zero
         contentView.addSubview(promoView)
     }
     
