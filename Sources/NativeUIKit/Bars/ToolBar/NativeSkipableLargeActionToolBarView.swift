@@ -23,13 +23,9 @@
 import UIKit
 import SparrowKit
 
-open class NativeSkipableLargeActionToolBarView: NativeMimicrateToolBarView {
+open class NativeSkipableLargeActionToolBarView: NativeLargeActionToolBarView {
     
     // MARK: - Views
-    
-    public let actionButton = NativeLargeActionButton().do {
-        $0.applyDefaultAppearance(with: .init(content: .white, background: .tint))
-    }
     
     public let skipButton = SPDimmedButton().do {
         if #available(iOS 13.0, *) {
@@ -42,7 +38,6 @@ open class NativeSkipableLargeActionToolBarView: NativeMimicrateToolBarView {
     
     open override func commonInit() {
         super.commonInit()
-        addSubview(actionButton)
         addSubview(skipButton)
     }
     
@@ -50,8 +45,6 @@ open class NativeSkipableLargeActionToolBarView: NativeMimicrateToolBarView {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        actionButton.layout(y: layoutMargins.top)
-        
         skipButton.setWidthAndFit(width: layoutWidth)
         skipButton.frame.origin.y = actionButton.frame.maxY + 12
         skipButton.setXCenter()
