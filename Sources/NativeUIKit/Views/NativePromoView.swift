@@ -92,7 +92,7 @@ open class NativePromoView: SPView {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        areaView.frame = .init(x: layoutMargins.left, y: layoutMargins.top, width: layoutWidth, height: areaView.frame.height)
+        areaView.frame = .init(x: layoutMargins.left, y: layoutMargins.top, width: readableWidth, height: areaView.frame.height)
     
         let labelsWidth = areaView.layoutWidth
         
