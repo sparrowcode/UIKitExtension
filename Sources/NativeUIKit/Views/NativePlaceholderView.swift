@@ -122,9 +122,8 @@ open class PlaceholderView: SPButton {
      */
     open func layoutCenter() {
         guard let superview = self.superview else { return }
-        sizeToFit()
         let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
-        frame.setWidth(width)
+        frame.setWidthAndFit(width: width)
         superview.setXCenter()
         center.y = (superview.frame.height / 2) * 0.94
     }
