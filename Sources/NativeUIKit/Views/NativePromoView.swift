@@ -145,9 +145,8 @@ open class NativePromoContainerView: SPView {
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let superSize = super.sizeThatFits(size)
         layoutSubviews()
-        return .init(width: superSize.width, height: promoView.frame.maxY + layoutMargins.bottom)
+        return .init(width: size.width, height: promoView.frame.maxY + layoutMargins.bottom)
     }
 }
 #endif
