@@ -84,7 +84,8 @@ open class NativePromoView: SPView {
     
     open func layout(y: CGFloat) {
         guard let superview = self.superview else { return }
-        let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
+        var width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
+        if (width == .zero) && (superview.layoutWidth != .zero) { width = superview.layoutWidth }
         setWidthAndFit(width: width)
         setXCenter()
         frame.origin.y = y
@@ -133,6 +134,7 @@ open class NativePromoContainerView: SPView {
 
     open override func commonInit() {
         super.commonInit()
+        layoutMargins = .zero
         addSubview(promoView)
     }
     
