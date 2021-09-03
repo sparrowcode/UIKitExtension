@@ -25,42 +25,36 @@ import NativeUIKit
 
 class RootController: SPController {
     
-    let largeButton = NativeLargeActionButton()
+
+    let promoView = NativePromoView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        view.addSubview(largeButton)
-        largeButton.applyDefaultAppearance(with: .init(content: .custom(.white), background: .tint))
-        largeButton.setTitle("Title")
+        view.backgroundColor = .secondarySystemBackground
         
-        largeButton.addAction(.init(handler: { _ in
-            let controller = Native2HeaderController(image: nil, title: "Title", subtitle: "Subtitle")
-            let toolBarView = NativeSkipableLargeActionToolBarView()
-            toolBarView.actionButton.setTitle("Action Button")
-            toolBarView.skipButton.setTitle("Skip")
-            controller.toolBarView = toolBarView
-            let navController = controller.wrapToNavigationController(prefersLargeTitles: false)
-            controller.navigationItem.title = "Navigation Item"
-            self.present(navController)
-        }), for: .touchUpInside)
+        promoView.button.setTitle("Example")
+        promoView.descriptionLabel.text = "fdsfs"
+        promoView.titleLabel.text = "fsdfdsfs"
+        view.addSubview(promoView)
         
+        delay(2, closure: {
+            print("call")
+            UIApplication.shared.windows.forEach({ $0.tintColor = UIColor.systemColorfulColors.randomElement()! })
+        })
+        
+        delay(4, closure: {
+            print("call")
+            UIApplication.shared.windows.forEach({ $0.tintColor = UIColor.systemColorfulColors.randomElement()! })
+        })
+        
+        delay(6, closure: {
+            print("call")
+            UIApplication.shared.windows.forEach({ $0.tintColor = UIColor.systemColorfulColors.randomElement()! })
+        })
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        largeButton.sizeToFit()
-        largeButton.frame.setWidth(view.layoutWidth)
-        largeButton.setXCenter()
-        largeButton.frame.origin.y = 200
-        
-    }
-}
-
-class Native2HeaderController: NativeHeaderController {
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        scrollView.contentSize = .init(width: view.frame.width, height: 1400)
+        promoView.layout(y: 100)
     }
 }

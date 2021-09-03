@@ -55,7 +55,7 @@ open class NativePromoView: SPView {
     }
     
     public let button = SPDimmedButton().do {
-        $0.applyDefaultAppearance(with: .init(content: .tint, background: .clear))
+        $0.applyDefaultAppearance(with: .init(content: .tint, background: .custom(.clear)))
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body, weight: .semibold, addPoints: 2)
     }
     
@@ -94,7 +94,7 @@ open class NativePromoView: SPView {
     open override func layoutSubviews() {
         super.layoutSubviews()
         areaView.frame = .init(x: layoutMargins.left, y: layoutMargins.top, width: layoutWidth, height: areaView.frame.height)
-    
+        
         let labelsWidth = areaView.layoutWidth
         
         titleLabel.layoutDynamicHeight(width: labelsWidth)
@@ -131,7 +131,7 @@ open class NativePromoContainerView: SPView {
     public let promoView = NativePromoView()
     
     // MARK: - Init
-
+    
     open override func commonInit() {
         super.commonInit()
         layoutMargins = .zero
