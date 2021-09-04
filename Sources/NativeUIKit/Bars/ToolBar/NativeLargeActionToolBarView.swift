@@ -31,23 +31,43 @@ open class NativeLargeActionToolBarView: NativeMimicrateToolBarView {
         $0.applyDefaultAppearance(with: .init(content: .white, background: .tint))
     }
     
+    public let footerLabel = SPLabel().do {
+        $0.font = .preferredFont(forTextStyle: .footnote)
+        $0.numberOfLines = .zero
+        if #available(iOS 13.0, *) {
+            $0.textColor = .secondaryLabel
+        } else {
+            $0.textColor = .black.alpha(0.5)
+        }
+    }
+    
     // MARK: - Init
     
     open override func commonInit() {
         super.commonInit()
         addSubview(actionButton)
+        addSubview(footerLabel)
     }
     
     // MARK: - Layout
     
+    internal let footerLeftInset: CGFloat = 20
+    
     open override func layoutSubviews() {
         super.layoutSubviews()
         actionButton.layout(y: layoutMargins.top)
+        if footerLabel.text != nil {
+            footerLabel.layoutDynamicHeight(x: layoutMargins.left + footerLeftInset, y: actionButton.frame.maxY + 12, width: layoutWidth - footerLeftInset)
+        }
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         layoutSubviews()
-        return .init(width: size.width, height: actionButton.frame.maxY + layoutMargins.bottom)
+        if footerLabel.text == nil {
+            return .init(width: size.width, height: actionButton.frame.maxY + layoutMargins.bottom)
+        } else {
+            return .init(width: size.width, height: footerLabel.frame.maxY + layoutMargins.bottom)
+        }
     }
 }
 #endif

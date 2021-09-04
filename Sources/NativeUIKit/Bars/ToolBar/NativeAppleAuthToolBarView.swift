@@ -19,41 +19,57 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#if canImport(UIKit) && (os(iOS))
+#if canImport(UIKit) && canImport(AuthenticationServices) && (os(iOS))
 import UIKit
 import SparrowKit
+import AuthenticationServices
 
-open class NativeLargeActionFooterToolBarView: NativeLargeActionToolBarView {
+@available(iOS 13.0, *)
+open class NativeAppleAuthToolBarView: NativeMimicrateToolBarView {
     
     // MARK: - Views
     
+    public let authButton = ASAuthorizationAppleIDButton()
+    
     public let footerLabel = SPLabel().do {
         $0.font = .preferredFont(forTextStyle: .footnote)
-        if #available(iOS 13.0, *) {
-            $0.textColor = .secondaryLabel
-        } else {
-            $0.textColor = .black.alpha(0.5)
-        }
+        $0.numberOfLines = .zero
+        $0.textColor = .secondaryLabel
     }
     
     // MARK: - Init
     
     open override func commonInit() {
         super.commonInit()
+        addSubview(authButton)
         addSubview(footerLabel)
     }
     
     // MARK: - Layout
     
+    internal let footerLeftInset: CGFloat = 20
+    
     open override func layoutSubviews() {
         super.layoutSubviews()
-        let inset: CGFloat = 16
-        footerLabel.layoutDynamicHeight(x: layoutMargins.left + inset, y: actionButton.frame.maxY + 12, width: layoutWidth - inset)
+
+        let authButtonWidth = min(readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
+        authButton.frame.setWidth(authButtonWidth)
+        authButton.frame.setHeight(52)
+        authButton.setXCenter()
+        authButton.frame.origin.y = layoutMargins.top
+        
+        if footerLabel.text != nil {
+            footerLabel.layoutDynamicHeight(x: layoutMargins.left + footerLeftInset, y: authButton.frame.maxY + 12, width: layoutWidth - footerLeftInset)
+        }
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         layoutSubviews()
-        return .init(width: size.width, height: footerLabel.frame.maxY + layoutMargins.bottom)
+        if footerLabel.text == nil {
+            return .init(width: size.width, height: authButton.frame.maxY + layoutMargins.bottom)
+        } else {
+            return .init(width: size.width, height: footerLabel.frame.maxY + layoutMargins.bottom)
+        }
     }
 }
 #endif

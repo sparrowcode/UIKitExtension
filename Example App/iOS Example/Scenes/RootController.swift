@@ -23,38 +23,15 @@ import UIKit
 import SparrowKit
 import NativeUIKit
 
-class RootController: SPController {
+class RootController: NativeScrollController {
     
+    let authToolBarView = NativeAppleAuthToolBarView().do {
+        $0.footerLabel.text = "Here footer text and it provided my developer and maybe some lines even."
+    }
 
-    let promoView = NativePromoView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .secondarySystemBackground
+        self.toolBarView = authToolBarView
         
-        promoView.button.setTitle("Example")
-        promoView.descriptionLabel.text = "fdsfs"
-        promoView.titleLabel.text = "fsdfdsfs"
-        view.addSubview(promoView)
-        
-        delay(2, closure: {
-            print("call")
-            UIApplication.shared.windows.forEach({ $0.tintColor = UIColor.systemColorfulColors.randomElement()! })
-        })
-        
-        delay(4, closure: {
-            print("call")
-            UIApplication.shared.windows.forEach({ $0.tintColor = UIColor.systemColorfulColors.randomElement()! })
-        })
-        
-        delay(6, closure: {
-            print("call")
-            UIApplication.shared.windows.forEach({ $0.tintColor = UIColor.systemColorfulColors.randomElement()! })
-        })
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        promoView.layout(y: 100)
     }
 }
