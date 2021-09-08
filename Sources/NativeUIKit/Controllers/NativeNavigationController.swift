@@ -19,24 +19,40 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#if canImport(UIKit) && (os(iOS))
 import UIKit
 import SparrowKit
-import NativeUIKit
 
-class RootController: NativeScrollController {
+open class NativeNavigationController: SPNavigationController {
     
-    let actionToolBarView = NativeLargeActionToolBarView().do {
-        $0.actionButton.setTitle("Action Button")
-        $0.footerLabel.text = "Here footer text and it provided my developer and maybe some lines even."
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let navigationController = self.navigationController as? NativeNavigationController {
-            navigationController.mimicrateToolBarView = actionToolBarView
+    // MARK: - Views
+    
+    open var mimicrateToolBarView: NativeMimicrateToolBarView? = nil {
+        willSet {
+            if let toolBarView = mimicrateToolBarView {
+                toolBarView.removeFromSuperview()
+            }
         }
-        
-        scrollView.contentSize = .init(width: view.frame.width, height: 1000)
+        didSet {
+            if let toolBarView = mimicrateToolBarView {
+                view.addSubview(toolBarView)
+            }
+        }
+    }
+    
+    // MARK: - Layout
+    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let toolBarView = mimicrateToolBarView {
+            toolBarView.layoutMargins.bottom = systemSafeAreaInsets.bottom + 16
+            toolBarView.setWidthAndFit(width: view.frame.width)
+            toolBarView.frame.setMaxY(view.frame.height)
+            let toolBarFrameFitHeight = toolBarView.frame.height - systemSafeAreaInsets.bottom
+            if additionalSafeAreaInsets.bottom != toolBarFrameFitHeight {
+                additionalSafeAreaInsets.bottom = toolBarFrameFitHeight
+            }
+        }
     }
 }
+#endif

@@ -21,13 +21,16 @@
 
 import UIKit
 import SparrowKit
+import NativeUIKit
 
 @UIApplicationMain
 class AppDelegate: SPAppWindowDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let rootController = RootController().wrapToNavigationController(prefersLargeTitles: false)
-        makeKeyAndVisible(viewController: rootController, tint: .systemBlue)
+        let rootController = RootController()
+        let navigationController = NativeNavigationController(rootViewController: rootController)
+        makeKeyAndVisible(viewController: navigationController, tint: .systemBlue)
         return true
     }
 }
+

@@ -46,21 +46,6 @@ open class NativeScrollController: SPScrollController {
         }
     }
     
-    // MARK: - Views
-    
-    open var toolBarView: NativeMimicrateToolBarView? = nil {
-        willSet {
-            if let toolBarView = toolBarView {
-                toolBarView.removeFromSuperview()
-            }
-        }
-        didSet {
-            if let toolBarView = toolBarView {
-                view.addSubview(toolBarView)
-            }
-        }
-    }
-
     // MARK: - Init
     
     public override init() {
@@ -86,29 +71,6 @@ open class NativeScrollController: SPScrollController {
         case .hidable:
             heightForChangeNavigationAppearance = 16
         }
-    }
-    
-    // MARK: - Lifecycle
-    
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    // MARK: - Layout
-    
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if let toolBarView = toolBarView {
-            toolBarView.layoutMargins.bottom = systemSafeAreaInsets.bottom + 16
-            toolBarView.setWidthAndFit(width: view.frame.width)
-            toolBarView.frame.setMaxY(view.frame.height)
-            let toolBarFrameFitHeight = toolBarView.frame.height - systemSafeAreaInsets.bottom
-            if additionalSafeAreaInsets.bottom != toolBarFrameFitHeight {
-                additionalSafeAreaInsets.bottom = toolBarFrameFitHeight
-            }
-        }
-        
     }
     
     // MARK: - Models
