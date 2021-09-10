@@ -28,9 +28,7 @@ open class NativeSkipableLargeActionToolBarView: NativeLargeActionToolBarView {
     // MARK: - Views
     
     public let skipButton = SPDimmedButton().do {
-        if #available(iOS 13.0, *) {
-            $0.applyDefaultAppearance(with: .init(content: .tertiaryLabel, background: .clear))
-        }
+        $0.applyDefaultAppearance(with: .init(content: .systemGray, background: .clear))
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body, weight: .semibold)
     }
     
