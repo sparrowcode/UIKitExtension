@@ -42,6 +42,7 @@ open class NativeLargeSmallActionToolBarView: NativeLargeActionToolBarView {
     // MARK: - Actions
     
     open override func setLoading(_ state: Bool) {
+        super.setLoading(state)
         secondActionButton.isHidden = state
     }
     
