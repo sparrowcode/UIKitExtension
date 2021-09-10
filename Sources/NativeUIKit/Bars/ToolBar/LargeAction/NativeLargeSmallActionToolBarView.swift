@@ -39,6 +39,12 @@ open class NativeLargeSmallActionToolBarView: NativeLargeActionToolBarView {
         addSubview(secondActionButton)
     }
     
+    // MARK: - Actions
+    
+    open override func setLoading(_ state: Bool) {
+        secondActionButton.isHidden = state
+    }
+    
     // MARK: - Layout
     
     open override func layoutSubviews() {

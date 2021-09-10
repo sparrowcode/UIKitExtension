@@ -27,6 +27,8 @@ open class NativeLargeActionToolBarView: NativeMimicrateToolBarView {
     
     // MARK: - Views
     
+    public let activityIndicatorView = UIActivityIndicatorView()
+    
     public let actionButton = NativeLargeActionButton().do {
         $0.applyDefaultAppearance(with: .init(content: .white, background: .tint))
     }
@@ -45,8 +47,23 @@ open class NativeLargeActionToolBarView: NativeMimicrateToolBarView {
     
     open override func commonInit() {
         super.commonInit()
+        addSubview(activityIndicatorView)
         addSubview(actionButton)
         addSubview(footerLabel)
+    }
+    
+    // MARK: - Actions
+    
+    open func setLoading(_ state: Bool) {
+        if state {
+            activityIndicatorView.startAnimating()
+            actionButton.isHidden = true
+            footerLabel.isHidden = true
+        } else {
+            activityIndicatorView.stopAnimating()
+            actionButton.isHidden = false
+            footerLabel.isHidden = false
+        }
     }
     
     // MARK: - Layout
@@ -59,6 +76,16 @@ open class NativeLargeActionToolBarView: NativeMimicrateToolBarView {
         if footerLabel.text != nil {
             footerLabel.layoutDynamicHeight(x: layoutMargins.left + footerLeftInset, y: actionButton.frame.maxY + 12, width: layoutWidth - footerLeftInset)
         }
+        
+        let contentHeight: CGFloat = {
+            if footerLabel.text == nil {
+                return actionButton.frame.maxY
+            } else {
+                return footerLabel.frame.maxY
+            }
+        }()
+        activityIndicatorView.setXCenter()
+        activityIndicatorView.center.y = contentHeight / 2
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
