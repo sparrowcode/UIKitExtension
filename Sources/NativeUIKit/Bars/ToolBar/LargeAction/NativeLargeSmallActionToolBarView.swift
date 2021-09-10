@@ -29,7 +29,7 @@ open class NativeLargeSmallActionToolBarView: NativeLargeActionToolBarView {
     
     public let secondActionButton = SPDimmedButton().do {
         $0.applyDefaultAppearance(with: .init(content: .tint, background: .clear))
-        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3, weight: .semibold)
+        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline, addPoints: 1)
     }
     
     // MARK: - Init
