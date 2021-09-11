@@ -39,6 +39,13 @@ open class NativeSkipableLargeActionToolBarView: NativeLargeActionToolBarView {
         addSubview(skipButton)
     }
     
+    // MARK: - Actions
+    
+    open override func setLoading(_ state: Bool) {
+        super.setLoading(state)
+        skipButton.isHidden = state
+    }
+    
     // MARK: - Layout
     
     open override func layoutSubviews() {
