@@ -13,7 +13,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(name: "SparrowKit", url: "https://github.com/ivanvorobei/SparrowKit", .upToNextMajor(from: "3.2.5")),
+        .package(name: "SparrowKit", url: "https://github.com/ivanvorobei/SparrowKit", .upToNextMajor(from: "3.2.6")),
         .package(name: "SPPerspective", url: "https://github.com/ivanvorobei/SPPerspective", .upToNextMajor(from: "1.3.6"))
     ],
     targets: [
