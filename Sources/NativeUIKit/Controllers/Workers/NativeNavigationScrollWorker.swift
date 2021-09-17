@@ -23,41 +23,30 @@
 import UIKit
 import SparrowKit
 
-/**
- NativeUIKit: Hide navigation bar when scrolling to up.
- */
-open class NativeScrollController: SPScrollController {
+open class NativeNavigationScrollWorker: NSObject {
     
-    // MARK: - Data
+    private weak var scrollView: UIScrollView?
+    private let scrollBehavior: NativeNavigationScrollBehavior
+    private let heightForChangeNavigationAppearance: CGFloat = 16
     
-    private var scrollWorker: NativeNavigationScrollWorker!
-    
-    // MARK: - Init
-    
-    public override init() {
+    init(scrollView: UIScrollView, scrollBehavior: NativeNavigationScrollBehavior) {
+        self.scrollView = scrollView
+        self.scrollBehavior = scrollBehavior
         super.init()
-        scrollWorker = NativeNavigationScrollWorker(scrollView: self.scrollView, scrollBehavior: .default)
+        scrollView.contentInset.top = heightForChangeNavigationAppearance
+        scrollView.contentInset.bottom = NativeLayout.Spaces.Scroll.bottom_inset_reach_end
     }
     
-    public init(navigationScrollBehavior: NativeNavigationScrollBehavior) {
-        super.init()
-        scrollWorker = NativeNavigationScrollWorker(scrollView: self.scrollView, scrollBehavior: navigationScrollBehavior)
-    }
-    
-    public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    open override func commonInit() {
-        super.commonInit()
-        scrollView.delegate = self
-    }
-    
-    // MARK: - UIScrollViewDelegate
-    
-    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == self.scrollView {
-            scrollWorker.scrollViewDidScroll()
+    public func scrollViewDidScroll() {
+        switch scrollBehavior {
+        case .default:
+            break
+        case .hidable:
+            guard let scrollView = self.scrollView else { return }
+            let contentOffsetY = scrollView.safeAreaInsets.top + scrollView.contentInset.top + scrollView.contentOffset.y
+            let spaceToNavigationBottom = scrollView.contentInset.top
+            let progress = (heightForChangeNavigationAppearance - (spaceToNavigationBottom - contentOffsetY)) / heightForChangeNavigationAppearance
+            scrollView.viewController?.navigationController?.navigationBar.setBackgroundAlpha(progress)
         }
     }
 }
