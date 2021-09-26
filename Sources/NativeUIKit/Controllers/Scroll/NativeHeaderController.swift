@@ -23,31 +23,34 @@
 import UIKit
 import SparrowKit
 
-open class NativeNavigationScrollWorker: NSObject {
+open class NativeHeaderController: SPScrollController {
     
-    private weak var scrollView: UIScrollView?
-    private let scrollBehavior: NativeNavigationScrollBehavior
-    private let heightForChangeNavigationAppearance: CGFloat = 16
+    // MARK: - Views
     
-    init(scrollView: UIScrollView, scrollBehavior: NativeNavigationScrollBehavior) {
-        self.scrollView = scrollView
-        self.scrollBehavior = scrollBehavior
+    public let headerView: NativeModalHeaderView
+    
+    // MARK: - Init
+    
+    public init(image: UIImage?, title: String, subtitle: String) {
+        self.headerView = NativeModalHeaderView(image: image, title: title, subtitle: subtitle)
         super.init()
-        scrollView.contentInset.top = heightForChangeNavigationAppearance
-        scrollView.contentInset.bottom = NativeLayout.Spaces.Scroll.bottom_inset_reach_end
     }
     
-    public func scrollViewDidScroll() {
-        switch scrollBehavior {
-        case .default:
-            break
-        case .hidable:
-            guard let scrollView = self.scrollView else { return }
-            let contentOffsetY = scrollView.safeAreaInsets.top + scrollView.contentInset.top + scrollView.contentOffset.y
-            let spaceToNavigationBottom = scrollView.contentInset.top
-            let progress = (heightForChangeNavigationAppearance - (spaceToNavigationBottom - contentOffsetY)) / heightForChangeNavigationAppearance
-            scrollView.viewController?.navigationController?.navigationBar.setBackgroundAlpha(progress)
-        }
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Lifecycle
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        scrollView.addSubview(headerView)
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        headerView.layout(y: .zero)
+        scrollView.contentSize = .init(width: view.frame.width, height: headerView.frame.maxY)
     }
 }
 #endif

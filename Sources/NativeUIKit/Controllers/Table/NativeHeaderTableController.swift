@@ -27,15 +27,10 @@ import SPDiffable
 @available(iOS 13.0, *)
 open class NativeHeaderTableController: SPDiffableTableController {
     
-    // MARK: - Data
-    
-    private var scrollWorker: NativeNavigationScrollWorker!
-    
     // MARK: - Init
     
-    init(headerView: UIView, navigationScrollBehavior: NativeNavigationScrollBehavior) {
+    init(headerView: UIView) {
         super.init(style: .insetGrouped)
-        scrollWorker = NativeNavigationScrollWorker(scrollView: self.tableView, scrollBehavior: navigationScrollBehavior)
         tableView.tableHeaderView = HeaderContainerView(contentView: headerView)
     }
     
@@ -61,14 +56,6 @@ open class NativeHeaderTableController: SPDiffableTableController {
     }
     
     private var cachedHeaderHeight: CGFloat? = nil
-    
-    // MARK: - UIScrollViewDelegate
-    
-    open override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == self.tableView {
-            scrollWorker.scrollViewDidScroll()
-        }
-    }
     
     // MARK: - Views
     

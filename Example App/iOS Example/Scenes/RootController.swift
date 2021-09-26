@@ -23,28 +23,7 @@ import UIKit
 import SparrowKit
 import NativeUIKit
 
-class RootController: NativeScrollController {
+class RootController: UIViewController {
     
-    override init() {
-        super.init(navigationScrollBehavior: .hidable)
-    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    let actionToolBarView = NativeLargeActionToolBarView().do {
-        $0.actionButton.setTitle("Action Button")
-        $0.footerLabel.text = "Here footer text and it provided my developer and maybe some lines even."
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let navigationController = self.navigationController as? NativeNavigationController {
-            navigationController.mimicrateToolBarView = actionToolBarView
-        }
-        
-        scrollView.contentSize = .init(width: view.frame.width, height: 1000)
-    }
 }
