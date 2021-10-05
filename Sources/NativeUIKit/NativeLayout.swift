@@ -37,9 +37,9 @@ public enum NativeLayout {
         
         public enum Scroll {
             
-            static var top_inset_transparent_navigation: CGFloat { 16 }
-            static var bottom_inset_reach_end: CGFloat { 36 }
-            static var bottom_inset_when_keyboard_can_appear: CGFloat { 32 }
+            public static var top_inset_transparent_navigation: CGFloat { 16 }
+            public static var bottom_inset_reach_end: CGFloat { 36 }
+            public static var bottom_inset_when_keyboard_can_appear: CGFloat { 32 }
         }
     }
 }
