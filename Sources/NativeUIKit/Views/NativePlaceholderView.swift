@@ -23,25 +23,22 @@
 import UIKit
 import SparrowKit
 
-open class PlaceholderView: SPButton {
+open class NativePlaceholderView: SPButton {
     
     // MARK: - Views
     
     public let iconImageView = SPImageView().do {
         $0.contentMode = .scaleAspectFit
-        $0.tintColor = .tint
     }
     
     public let headerLabel = SPLabel().do {
         $0.numberOfLines = .zero
-        $0.textColor = .tint
         $0.textAlignment = .center
         $0.font = UIFont.preferredFont(forTextStyle: .title1, weight: .bold)
     }
     
     public let descriptionLabel = SPLabel().do {
         $0.numberOfLines = .zero
-        $0.textColor = .tint
         $0.textAlignment = .center
         $0.font = UIFont.preferredFont(forTextStyle: .body, weight: .regular)
     }
@@ -72,8 +69,11 @@ open class PlaceholderView: SPButton {
             tintColor = UIColor.black.alpha(0.3)
         }
         backgroundColor = .clear
+        iconImageView.tintColor = tintColor
         addSubview(iconImageView)
+        headerLabel.textColor = tintColor
         addSubview(headerLabel)
+        descriptionLabel.textColor = tintColor
         addSubview(descriptionLabel)
     }
     
@@ -113,7 +113,7 @@ open class PlaceholderView: SPButton {
         sizeToFit()
         let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
         frame.setWidth(width)
-        superview.setXCenter()
+        setXCenter()
         frame.origin.y = y
     }
     
@@ -124,7 +124,7 @@ open class PlaceholderView: SPButton {
         guard let superview = self.superview else { return }
         let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
         setWidthAndFit(width: width)
-        superview.setXCenter()
+        setXCenter()
         center.y = (superview.frame.height / 2) * 0.94
     }
     
