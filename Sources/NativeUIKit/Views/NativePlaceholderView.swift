@@ -125,7 +125,15 @@ open class NativePlaceholderView: SPButton {
         let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
         setWidthAndFit(width: width)
         setXCenter()
-        center.y = (superview.frame.height / 2) * 0.94
+        switch superview {
+        case _ as UICollectionView:
+            center.y = (superview.layoutHeight / 2) * 0.94
+        case _ as UITableView:
+            center.y = (superview.layoutHeight / 2) * 0.94
+        default:
+            center.y = (superview.frame.height / 2) * 0.94
+        }
+        
     }
     
     open override func layoutSubviews() {
