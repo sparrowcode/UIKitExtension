@@ -29,7 +29,7 @@ open class NativeHeaderTableController: SPDiffableTableController {
     
     // MARK: - Init
     
-    public init(headerView: UIView, style: UITableView.Style) {
+    public init(style: UITableView.Style, headerView: UIView) {
         super.init(style: style)
         tableView.tableHeaderView = HeaderContainerView(contentView: headerView)
     }
