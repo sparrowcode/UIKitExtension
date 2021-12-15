@@ -34,6 +34,11 @@ open class NativeHeaderTableController: SPDiffableTableController {
         tableView.tableHeaderView = HeaderContainerView(contentView: headerView)
     }
     
+    public init(style: UITableView.Style, headerContainerView: HeaderContainerView) {
+        super.init(style: style)
+        tableView.tableHeaderView = headerContainerView
+    }
+    
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -59,34 +64,34 @@ open class NativeHeaderTableController: SPDiffableTableController {
     
     // MARK: - Views
     
-    class HeaderContainerView: SPView {
+    open class HeaderContainerView: SPView {
         
-        let contentView: UIView
+        public let contentView: UIView
         
-        init(contentView: UIView) {
+        public init(contentView: UIView) {
             self.contentView = contentView
             super.init()
         }
         
-        required init?(coder aDecoder: NSCoder) {
+        public required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
         
-        override func commonInit() {
+        public override func commonInit() {
             super.commonInit()
             insetsLayoutMarginsFromSafeArea = false
             layoutMargins = .zero
             addSubview(contentView)
         }
         
-        override func layoutSubviews() {
+        public override func layoutSubviews() {
             super.layoutSubviews()
             contentView.setWidthAndFit(width: frame.width)
             contentView.frame.origin.x = .zero
             contentView.frame.origin.y = .zero
         }
         
-        override func sizeThatFits(_ size: CGSize) -> CGSize {
+        public override func sizeThatFits(_ size: CGSize) -> CGSize {
             frame.setWidth(size.width)
             layoutSubviews()
             return .init(width: size.width, height: contentView.frame.maxY)
