@@ -33,16 +33,6 @@ extension NativeHeaderTableController {
         
         public let contentView: UIView
         
-        public var extendAreaToTop: Bool = true {
-            didSet {
-                extendAreaView.isHidden = !extendAreaToTop
-            }
-        }
-        
-        // MARK: - Private
-        
-        private var extendAreaView = SPView()
-        
         // MARK: - Init
         
         public init(contentView: UIView) {
@@ -58,25 +48,13 @@ extension NativeHeaderTableController {
             super.commonInit()
             insetsLayoutMarginsFromSafeArea = false
             layoutMargins = .zero
-            
-            addSubview(extendAreaView)
-            extendAreaView.backgroundColor = backgroundColor
-            
             addSubview(contentView)
-        }
-        
-        // MARK: - Ovveride
-        
-        open override func tintColorDidChange() {
-            super.tintColorDidChange()
-            extendAreaView.backgroundColor = backgroundColor
         }
         
         // MARK: - Layout
         
         public override func layoutSubviews() {
             super.layoutSubviews()
-            extendAreaView.frame = .init(x: .zero, maxY: .zero, width: frame.width, height: 1000)
             contentView.setWidthAndFit(width: layoutWidth)
             contentView.frame.origin.x = layoutMargins.left
             contentView.frame.origin.y = layoutMargins.top
