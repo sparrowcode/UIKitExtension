@@ -25,48 +25,25 @@ import SparrowKit
 import SPDiffable
 
 @available(iOS 13.0, *)
-open class NativeHeaderTableController: SPDiffableTableController {
-    
-    // MARK: - Init
-    
-    public init(style: UITableView.Style, headerView: UIView) {
-        super.init(style: style)
-        tableView.tableHeaderView = HeaderContainerView(contentView: headerView)
-    }
-    
-    public init(style: UITableView.Style, headerContainerView: HeaderContainerView) {
-        super.init(style: style)
-        tableView.tableHeaderView = headerContainerView
-    }
-    
-    public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Layout
-    
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if let headerView = tableView.tableHeaderView as? HeaderContainerView {
-            headerView.setWidthAndFit(width: view.frame.width)
-            if cachedHeaderHeight != headerView.frame.height {
-                cachedHeaderHeight = headerView.frame.height
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    guard let snapshot = self.diffableDataSource?.snapshot() else { return }
-                    self.diffableDataSource?.apply(snapshot)
-                }
-            }
-        }
-    }
-    
-    private var cachedHeaderHeight: CGFloat? = nil
-    
-    // MARK: - Views
+extension NativeHeaderTableController {
     
     open class HeaderContainerView: SPView {
         
+        // MARK: - Public
+        
         public let contentView: UIView
+        
+        public var extendAreaToTop: Bool = true {
+            didSet {
+                extendAreaView.isHidden = !extendAreaToTop
+            }
+        }
+        
+        // MARK: - Private
+        
+        private var extendAreaView = SPView()
+        
+        // MARK: - Init
         
         public init(contentView: UIView) {
             self.contentView = contentView
@@ -81,20 +58,28 @@ open class NativeHeaderTableController: SPDiffableTableController {
             super.commonInit()
             insetsLayoutMarginsFromSafeArea = false
             layoutMargins = .zero
+            addSubview(extendAreaView)
             addSubview(contentView)
         }
         
+        // MARK: - Ovveride
+        
+        
+        
+        // MARK: - Layout
+        
         public override func layoutSubviews() {
             super.layoutSubviews()
-            contentView.setWidthAndFit(width: frame.width)
-            contentView.frame.origin.x = .zero
-            contentView.frame.origin.y = .zero
+            extendAreaView.frame = .init(x: .zero, maxY: .zero, width: frame.width, height: 1000)
+            contentView.setWidthAndFit(width: layoutWidth)
+            contentView.frame.origin.x = layoutMargins.left
+            contentView.frame.origin.y = layoutMargins.top
         }
         
         public override func sizeThatFits(_ size: CGSize) -> CGSize {
             frame.setWidth(size.width)
             layoutSubviews()
-            return .init(width: size.width, height: contentView.frame.maxY)
+            return .init(width: size.width, height: contentView.frame.maxY + layoutMargins.bottom)
         }
     }
 }
