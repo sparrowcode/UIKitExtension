@@ -58,7 +58,10 @@ extension NativeHeaderTableController {
             super.commonInit()
             insetsLayoutMarginsFromSafeArea = false
             layoutMargins = .zero
+            
             addSubview(extendAreaView)
+            extendAreaView.backgroundColor = backgroundColor
+            
             addSubview(contentView)
         }
         
