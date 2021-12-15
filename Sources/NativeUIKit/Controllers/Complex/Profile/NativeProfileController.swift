@@ -12,7 +12,7 @@ open class NativeProfileController: NativeHeaderTableController {
     
     // MARK: - Init
     
-    init() {
+    public init() {
         super.init(style: .insetGrouped, headerView: headerView)
     }
     
