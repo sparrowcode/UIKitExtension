@@ -32,8 +32,15 @@ public enum NativeLayout {
     
     public enum Spaces {
         
-        public static var full_screen_horizontal_margins: CGFloat { 16 }
-        public static var modal_screen_horizontal_margins: CGFloat { 20 }
+        public static var `default`: CGFloat { 16 }
+        public static var default_half: CGFloat { 8 }
+        public static var default_double: CGFloat { 32 }
+        
+        public enum Margins {
+            
+            public static var full_screen_horizontal: CGFloat { 16 }
+            public static var modal_screen_horizontal: CGFloat { 20 }
+        }
         
         public enum Scroll {
             

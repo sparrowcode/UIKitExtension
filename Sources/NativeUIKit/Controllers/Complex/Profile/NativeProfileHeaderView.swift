@@ -40,6 +40,16 @@ open class NativeProfileHeaderView: SPView {
         $0.textAlignment = .center
         $0.adjustsFontSizeToFitWidth = true
         $0.minimumScaleFactor = 0.5
+        $0.text = nil
+    }
+    
+    public let namePlaceholderLabel = SPLabel().do {
+        $0.font = UIFont.preferredFont(forTextStyle: .title2, weight: .semibold, addPoints: 2)
+        $0.textColor = .secondaryLabel
+        $0.numberOfLines = 1
+        $0.textAlignment = .center
+        $0.adjustsFontSizeToFitWidth = true
+        $0.minimumScaleFactor = 0.5
         $0.text = .space
     }
     
@@ -60,12 +70,34 @@ open class NativeProfileHeaderView: SPView {
     
     open override func commonInit() {
         super.commonInit()
-        backgroundColor = .systemBackground
-        extendView.backgroundColor = backgroundColor
-        addSubviews([extendView, avatarView, nameLabel, emailButton])
+        backgroundColor = .clear
+        addSubviews([extendView, avatarView, nameLabel, namePlaceholderLabel, emailButton])
+        
+        layoutMargins = .init(
+            top: NativeLayout.Spaces.default_half,
+            left: NativeLayout.Spaces.default_double,
+            bottom: NativeLayout.Spaces.default_half,
+            right: NativeLayout.Spaces.default_double
+        )
+    }
+    
+    // MARK: - Ovveride
+    
+    open override var backgroundColor: UIColor? {
+        didSet {
+            extendView.backgroundColor = backgroundColor
+        }
     }
     
     // MARK: - Layout
+    
+    private var usingNameLabel: SPLabel {
+        if nameLabel.text == nil {
+            return namePlaceholderLabel
+        } else {
+            return nameLabel
+        }
+    }
     
     open override func layoutSubviews() {
         super.layoutSubviews()
@@ -77,12 +109,18 @@ open class NativeProfileHeaderView: SPView {
         
         nameLabel.layoutDynamicHeight(width: layoutWidth)
         nameLabel.setXCenter()
-        nameLabel.frame.origin.y = avatarView.frame.maxY + 8
+        nameLabel.frame.origin.y = avatarView.frame.maxY + NativeLayout.Spaces.default_half
+        
+        namePlaceholderLabel.layoutDynamicHeight(width: layoutWidth)
+        namePlaceholderLabel.setXCenter()
+        namePlaceholderLabel.frame.origin.y = nameLabel.frame.origin.y
+        
+        nameLabel.isHidden = !(nameLabel == usingNameLabel)
+        namePlaceholderLabel.isHidden = !(namePlaceholderLabel == usingNameLabel)
         
         emailButton.sizeToFit()
-        emailButton.frame.setWidth(nameLabel.frame.width)
         emailButton.setXCenter()
-        emailButton.frame.origin.y = nameLabel.frame.maxY + 2
+        emailButton.frame.origin.y = usingNameLabel.frame.maxY
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
