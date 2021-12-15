@@ -64,7 +64,10 @@ extension NativeHeaderTableController {
         
         // MARK: - Ovveride
         
-        
+        open override func tintColorDidChange() {
+            super.tintColorDidChange()
+            extendAreaView.backgroundColor = backgroundColor
+        }
         
         // MARK: - Layout
         
