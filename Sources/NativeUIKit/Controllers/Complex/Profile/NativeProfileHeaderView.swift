@@ -50,7 +50,7 @@ open class NativeProfileHeaderView: SPView {
         $0.textAlignment = .center
         $0.adjustsFontSizeToFitWidth = true
         $0.minimumScaleFactor = 0.5
-        $0.text = .space
+        $0.text = nil
     }
     
     // Add tap to clipboard
@@ -66,6 +66,8 @@ open class NativeProfileHeaderView: SPView {
     
     private var extendView = SPView()
     
+    var nameTextObserer: NSKeyValueObservation?
+    
     // MARK: - Init
     
     open override func commonInit() {
@@ -79,6 +81,15 @@ open class NativeProfileHeaderView: SPView {
             bottom: NativeLayout.Spaces.default_half,
             right: NativeLayout.Spaces.default_double
         )
+        
+        self.nameLabel.isHidden = !(self.nameLabel == self.usingNameLabel)
+        self.namePlaceholderLabel.isHidden = !(self.namePlaceholderLabel == self.usingNameLabel)
+        
+        nameTextObserer = nameLabel.observe(\.text) { [weak self] _, _ in
+            guard let self = self else { return }
+            self.nameLabel.isHidden = !(self.nameLabel == self.usingNameLabel)
+            self.namePlaceholderLabel.isHidden = !(self.namePlaceholderLabel == self.usingNameLabel)
+        }
     }
     
     // MARK: - Ovveride
@@ -114,9 +125,6 @@ open class NativeProfileHeaderView: SPView {
         namePlaceholderLabel.layoutDynamicHeight(width: layoutWidth)
         namePlaceholderLabel.setXCenter()
         namePlaceholderLabel.frame.origin.y = nameLabel.frame.origin.y
-        
-        nameLabel.isHidden = !(nameLabel == usingNameLabel)
-        namePlaceholderLabel.isHidden = !(namePlaceholderLabel == usingNameLabel)
         
         emailButton.sizeToFit()
         emailButton.setXCenter()

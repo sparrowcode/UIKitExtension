@@ -69,8 +69,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F41E02AA276C836700C7BD05 /* NativeUIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NativeUIKit; path = ..; sourceTree = "<group>"; };
 		F4C33DD926C92DF8001A28B1 /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4C33DF026C92E1B001A28B1 /* NativeUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = NativeUIKit; path = ..; sourceTree = "<group>"; };
 		F4C33DF126C92E52001A28B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4C33DF326C92E52001A28B1 /* RootController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		F4C33DF526C92E52001A28B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		F4C33DD026C92DF8001A28B1 = {
 			isa = PBXGroup;
 			children = (
-				F4C33DF026C92E1B001A28B1 /* NativeUIKit */,
+				F41E02AA276C836700C7BD05 /* NativeUIKit */,
 				F4C33DDB26C92DF8001A28B1 /* iOS Example */,
 				F4C33E0B26C9315F001A28B1 /* tvOS Example */,
 				F4C33E3126C932C8001A28B1 /* watchOS Example */,
