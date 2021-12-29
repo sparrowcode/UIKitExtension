@@ -12,8 +12,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '12.0'
 
   s.source_files = 'Sources/NativeUIKit/**/*.swift'
-  s.dependency 'SparrowKit'
-  s.dependency 'SPPerspective'
-  s.dependency 'SPDiffable'
+  s.dependency 'SparrowKit', '~> 3.4.8'
+  s.dependency 'SPPerspective', '~> 1.4.1'
+  s.dependency 'SPDiffable', '~> 2.2.0'
 
 end
