@@ -119,10 +119,9 @@ open class NativeAvatarView: SPView {
         let avatarSideSize = min(placeholderButton.frame.width, placeholderButton.frame.height) * 0.93
         avatarButton.frame = .init(side: avatarSideSize)
         avatarButton.center = placeholderButton.center
-        avatarButton.roundCorners()
-        
+        avatarButton.roundMinimumSide()
         indicatorButton.sizeToFit()
-        indicatorButton.roundCorners()
+        indicatorButton.roundMinimumSide()
         let sqrt2 = CGFloat(sqrt(2))
         let indicatorCenter = ((avatarButton.frame.width * (sqrt2 + 1)) / (2 * sqrt2)) * 1.02
         indicatorButton.center = .init(x: indicatorCenter, y: indicatorCenter)

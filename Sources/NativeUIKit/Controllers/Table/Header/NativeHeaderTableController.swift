@@ -36,7 +36,9 @@ open class NativeHeaderTableController: SPDiffableTableController {
     public init(style: UITableView.Style, headerView: UIView) {
         self.headerContainerView = HeaderContainerView(contentView: headerView)
         super.init(style: style)
+        headerContainerView.setWidthAndFit(width: view.frame.width)
         tableView.tableHeaderView = headerContainerView
+        
     }
     
     public required init?(coder: NSCoder) {
@@ -47,15 +49,13 @@ open class NativeHeaderTableController: SPDiffableTableController {
     
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if let headerView = tableView.tableHeaderView as? HeaderContainerView {
-            headerView.setWidthAndFit(width: view.frame.width)
-            if cachedHeaderHeight != headerView.frame.height {
-                cachedHeaderHeight = headerView.frame.height
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    guard let snapshot = self.diffableDataSource?.snapshot() else { return }
-                    self.diffableDataSource?.apply(snapshot)
-                }
+        headerContainerView.setWidthAndFit(width: view.frame.width)
+        if cachedHeaderHeight != headerContainerView.frame.height {
+            cachedHeaderHeight = headerContainerView.frame.height
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                guard let snapshot = self.diffableDataSource?.snapshot() else { return }
+                self.diffableDataSource?.apply(snapshot)
             }
         }
     }

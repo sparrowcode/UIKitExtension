@@ -70,7 +70,7 @@ open class NativeSmallActionButton: SPDimmedButton {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        roundCorners()
+        roundMinimumSide()
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
