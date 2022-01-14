@@ -47,11 +47,5 @@ open class NativeProfileController: NativeHeaderTableController {
         super.viewDidLoad()
         navigationItem.title = .empty
     }
-    
-    // MARK: - Public
-    
-    open func setSpaceBetweenHeaderAndCells(_ value: CGFloat) {
-        headerContainerView.layoutMargins.bottom = value
-    }
 }
 #endif

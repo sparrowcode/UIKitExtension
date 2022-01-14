@@ -33,7 +33,7 @@ open class NativeModalHeaderView: SPView {
     
     public let iconImageView = SPImageView().do {
         $0.contentMode = .scaleAspectFit
-        $0.tintColor = .tint
+        $0.tintColor = UIColor.tintColor
     }
     
     public let titleLabel = SPLabel().do {
@@ -110,7 +110,7 @@ open class NativeModalHeaderView: SPView {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        iconImageView.sizeToFit()
+        iconImageView.frame = .init(side: NativeLayout.Spaces.default_double * 2)
         iconImageView.setXCenter()
         iconImageView.frame.origin.y = layoutMargins.top
         

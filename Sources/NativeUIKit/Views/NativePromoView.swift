@@ -55,7 +55,7 @@ open class NativePromoView: SPView {
     }
     
     public let button = SPDimmedButton().do {
-        $0.applyDefaultAppearance(with: .init(content: .tint, background: .custom(.clear)))
+        $0.applyDefaultAppearance(with: .tintedContent)
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body, weight: .semibold, addPoints: 2)
     }
     

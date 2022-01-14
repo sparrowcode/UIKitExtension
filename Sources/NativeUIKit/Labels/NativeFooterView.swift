@@ -23,37 +23,47 @@
 import UIKit
 import SparrowKit
 
-open class NativeHeaderTextFieldController: NativeHeaderController {
+open class NativeFooterView: SPView {
     
     // MARK: - Views
     
-    public let textField = NativeLargeTextField().do {
-        $0.returnKeyType = .done
-        $0.autocapitalizationType = .words
-    }
-    
-    public let footerView = NativeFooterView()
-    
-    // MARK: - Lifecycle
-    
-    open override func viewDidLoad() {
-        super.viewDidLoad()
+    public let label = SPLabel().do {
+        $0.font = .preferredFont(forTextStyle: .footnote, addPoints: 1)
+        $0.numberOfLines = .zero
         if #available(iOS 13.0, *) {
-            view.backgroundColor = .systemBackground
+            $0.textColor = .secondaryLabel
+        } else {
+            $0.textColor = .gray
         }
-        scrollView.addSubviews(textField, footerView)
-        dismissKeyboardWhenTappedAround()
     }
     
-    // MARK: - Layout
+    public override init() {
+        super.init()
+    }
     
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        textField.layout(y: headerView.frame.maxY + NativeLayout.Spaces.default + NativeLayout.Spaces.default_half)
-        footerView.setWidthAndFit(width: textField.frame.width)
-        footerView.frame.origin.x = textField.frame.origin.x
-        footerView.frame.origin.y = textField.frame.maxY
-        scrollView.contentSize = .init(width: view.frame.width, height: footerView.frame.maxY)
+    public init(text: String) {
+        super.init()
+        label.text = text
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    open override func commonInit() {
+        super.commonInit()
+        layoutMargins = .init(top: NativeLayout.Spaces.default_half, left: 16, bottom: NativeLayout.Spaces.default_half, right: .zero)
+        addSubview(label)
+    }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        label.layoutDynamicHeight(x: layoutMargins.left, y: layoutMargins.top, width: layoutWidth)
+    }
+    
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        layoutSubviews()
+        return .init(width: size.width, height: label.frame.maxY + layoutMargins.bottom)
     }
 }
 #endif

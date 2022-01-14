@@ -41,7 +41,7 @@ open class NativePlayPauseCompactButton: SPDimmedButton {
     open override func commonInit() {
         super.commonInit()
         contentEdgeInsets = .init(side: 8)
-        applyDefaultAppearance(with: .init(content: .tint, background: .custom(.clear)))
+        applyDefaultAppearance(with: .tintedContent)
         updateAppearance()
     }
     

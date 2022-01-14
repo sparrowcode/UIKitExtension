@@ -49,6 +49,8 @@ open class NativeHeaderTableController: SPDiffableTableController {
     
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        headerContainerView.contentView.layoutMargins.left = tableView.layoutMargins.left
+        headerContainerView.contentView.layoutMargins.right = tableView.layoutMargins.right
         headerContainerView.setWidthAndFit(width: view.frame.width)
         if cachedHeaderHeight != headerContainerView.frame.height {
             cachedHeaderHeight = headerContainerView.frame.height
@@ -61,5 +63,11 @@ open class NativeHeaderTableController: SPDiffableTableController {
     }
     
     private var cachedHeaderHeight: CGFloat? = nil
+    
+    // MARK: - Public
+    
+    open func setSpaceBetweenHeaderAndCells(_ value: CGFloat) {
+        headerContainerView.layoutMargins.bottom = value
+    }
 }
 #endif

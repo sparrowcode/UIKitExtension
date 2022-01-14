@@ -26,7 +26,7 @@ import SparrowKit
 open class NativeSmallActionToolBarView: NativeMimicrateToolBarView {
     
     public let actionButton = SPDimmedButton().do {
-        $0.applyDefaultAppearance(with: .init(content: .tint, background: .clear))
+        $0.applyDefaultAppearance(with: .tintedContent)
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3, weight: .semibold)
     }
     

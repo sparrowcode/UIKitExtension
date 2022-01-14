@@ -47,6 +47,7 @@ extension NativeHeaderTableController {
         public override func commonInit() {
             super.commonInit()
             insetsLayoutMarginsFromSafeArea = false
+            contentView.insetsLayoutMarginsFromSafeArea = false
             layoutMargins = .zero
             addSubview(contentView)
         }

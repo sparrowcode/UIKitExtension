@@ -22,38 +22,36 @@
 #if canImport(UIKit) && (os(iOS))
 import UIKit
 import SparrowKit
+import SPDiffable
 
-open class NativeHeaderTextFieldController: NativeHeaderController {
+@available(iOS 13.0, *)
+open class NativeDiffableLeftButton: SPDiffableTableRow {
     
-    // MARK: - Views
+    open var textColor: UIColor
+    open var detailColor: UIColor
     
-    public let textField = NativeLargeTextField().do {
-        $0.returnKeyType = .done
-        $0.autocapitalizationType = .words
-    }
-    
-    public let footerView = NativeFooterView()
-    
-    // MARK: - Lifecycle
-    
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            view.backgroundColor = .systemBackground
-        }
-        scrollView.addSubviews(textField, footerView)
-        dismissKeyboardWhenTappedAround()
-    }
-    
-    // MARK: - Layout
-    
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        textField.layout(y: headerView.frame.maxY + NativeLayout.Spaces.default + NativeLayout.Spaces.default_half)
-        footerView.setWidthAndFit(width: textField.frame.width)
-        footerView.frame.origin.x = textField.frame.origin.x
-        footerView.frame.origin.y = textField.frame.maxY
-        scrollView.contentSize = .init(width: view.frame.width, height: footerView.frame.maxY)
+    public init(
+        id: String? = nil,
+        text: String,
+        textColor: UIColor = .label,
+        detail: String? = nil,
+        detailColor: UIColor = .secondaryLabel,
+        icon: UIImage? = nil,
+        accessoryType: UITableViewCell.AccessoryType = .none,
+        action: SPDiffableTableRow.Action? = nil
+    ) {
+        self.textColor = textColor
+        self.detailColor = detailColor
+        
+        super.init(
+            id: id,
+            text: text,
+            detail: detail,
+            icon: icon,
+            accessoryType: accessoryType,
+            selectionStyle: .none,
+            action: action
+        )
     }
 }
 #endif

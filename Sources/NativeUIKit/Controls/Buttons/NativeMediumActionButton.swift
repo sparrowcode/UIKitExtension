@@ -24,29 +24,20 @@ import UIKit
 import SparrowKit
 
 /**
- NativeUIKit: Small action button.
- Usually using at bottom of screen.
+ NativeUIKit: Medium action button.
+ You see it in Apply Music play and shuffle buttons.
  */
-open class NativeSmallActionButton: SPDimmedButton {
-    
-    // MARK: - Data
-    
-    /**
-     NativeUIKit: Higlight style when button pressing.
-     
-     If set content, only label and image change opacity.
-     If choosed background, area of button will change opacity.
-     */
-    open var higlightStyle = HiglightStyle.default
+open class NativeMediumActionButton: SPDimmedButton {
     
     // MARK: - Init
     
     open override func commonInit() {
         super.commonInit()
-        titleLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline, weight: .bold, addPoints: -1)
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .body, weight: .semibold, addPoints: .zero)
         titleLabel?.numberOfLines = 1
-        titleImageInset = 6
-        contentEdgeInsets = .init(horizontal: 10, vertical: 6)
+        titleImageInset = 8
+        contentEdgeInsets = .init(horizontal: 15, vertical: 15)
+        roundCorners(radius: 12)
     }
     
     // MARK: - Public
@@ -66,19 +57,10 @@ open class NativeSmallActionButton: SPDimmedButton {
         applyDefaultAppearance(with: colorise)
     }
     
-    // MARK: - Layout
-    
-    open override func layoutSubviews() {
-        super.layoutSubviews()
-        roundMinimumSide()
-    }
-    
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         let superSize = super.sizeThatFits(size)
-        var width = superSize.width
-        let minimumWidth: CGFloat = 70
-        if width < minimumWidth { width = minimumWidth }
-        
+        let width = superSize.width
+
         var height = superSize.height
         if let titleLabel = titleLabel, let imageView = imageView, let _ = imageView.image {
             if titleLabel.frame.height > .zero && imageView.frame.height > .zero {
@@ -90,34 +72,18 @@ open class NativeSmallActionButton: SPDimmedButton {
         return CGSize(width: width, height: height)
     }
     
-    // MARK: - Ovveride
+    // MARK: - Wrappers
     
-    open override var isHighlighted: Bool {
-        didSet {
-            switch higlightStyle {
-            case .content:
-                for view in [imageView, titleLabel] { view?.alpha = isHighlighted ? highlightOpacity : 1 }
-            case .background:
-                let color = backgroundColor
-                backgroundColor = color?.withAlphaComponent(isHighlighted ? highlightOpacity : 1)
-            }
-        }
+    public static var defaultCornerRadius: CGFloat {
+        let button = NativeMediumActionButton()
+        return button.layer.cornerRadius
     }
     
-    open override func setTitle(_ title: String?, for state: UIControl.State) {
-        super.setTitle(title?.uppercased(), for: state)
-    }
-    
-    // MARK: - Models
-    
-    public enum HiglightStyle {
-        
-        case content
-        case background
-        
-        static var `default`: HiglightStyle {
-            return .background
-        }
+    public static var defaultHeight: CGFloat {
+        let button = NativeMediumActionButton()
+        button.setTitle(.space)
+        button.sizeToFit()
+        return button.frame.height
     }
 }
 #endif

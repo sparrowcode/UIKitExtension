@@ -30,7 +30,7 @@ open class NativeLargeActionToolBarView: NativeMimicrateToolBarView {
     public let activityIndicatorView = UIActivityIndicatorView()
     
     public let actionButton = NativeLargeActionButton().do {
-        $0.applyDefaultAppearance(with: .init(content: .white, background: .tint))
+        $0.applyDefaultAppearance(with: .tintedColorful)
     }
     
     public let footerLabel = SPLabel().do {

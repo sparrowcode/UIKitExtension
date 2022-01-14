@@ -23,37 +23,16 @@
 import UIKit
 import SparrowKit
 
-open class NativeHeaderTextFieldController: NativeHeaderController {
+open class NativeMenuTableViewCell: SPTableViewCell {
     
-    // MARK: - Views
-    
-    public let textField = NativeLargeTextField().do {
-        $0.returnKeyType = .done
-        $0.autocapitalizationType = .words
+    open override func commonInit() {
+        super.commonInit()
+        higlightStyle = .content
     }
     
-    public let footerView = NativeFooterView()
-    
-    // MARK: - Lifecycle
-    
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            view.backgroundColor = .systemBackground
-        }
-        scrollView.addSubviews(textField, footerView)
-        dismissKeyboardWhenTappedAround()
-    }
-    
-    // MARK: - Layout
-    
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        textField.layout(y: headerView.frame.maxY + NativeLayout.Spaces.default + NativeLayout.Spaces.default_half)
-        footerView.setWidthAndFit(width: textField.frame.width)
-        footerView.frame.origin.x = textField.frame.origin.x
-        footerView.frame.origin.y = textField.frame.maxY
-        scrollView.contentSize = .init(width: view.frame.width, height: footerView.frame.maxY)
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        let superSize = super.sizeThatFits(size)
+        return .init(width: superSize.width, height: superSize.height + 4)
     }
 }
 #endif

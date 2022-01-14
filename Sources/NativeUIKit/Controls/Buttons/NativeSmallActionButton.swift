@@ -24,32 +24,19 @@ import UIKit
 import SparrowKit
 
 /**
- NativeUIKit: Large action button.
- Usually using at bottom of screen.
+ NativeUIKit: Small action button.
+ Using inside cells.
  */
-open class NativeLargeActionButton: SPDimmedButton {
-    
-    // MARK: - Data
-    
-    /**
-     NativeUIKit: Higlight style when button pressing.
-     
-     If set content, only label and image change opacity.
-     If choosed background, area of button will change opacity.
-     */
-    open var higlightStyle = HiglightStyle.default
+open class NativeSmallActionButton: SPDimmedButton {
     
     // MARK: - Init
     
     open override func commonInit() {
         super.commonInit()
-        insetsLayoutMarginsFromSafeArea = false
-        preservesSuperviewLayoutMargins = false
-        titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline, addPoints: 1)
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline, weight: .bold, addPoints: -1)
         titleLabel?.numberOfLines = 1
-        highlightOpacity = NativeAppearance.actionable_element_highlight_opacity
         titleImageInset = 6
-        contentEdgeInsets = .init(horizontal: 10, vertical: 14)
+        contentEdgeInsets = .init(horizontal: 10, vertical: 6)
     }
     
     // MARK: - Public
@@ -58,10 +45,10 @@ open class NativeLargeActionButton: SPDimmedButton {
      NativeUIKit: Wrapper of set content and color of button.
      
      - parameter title: Text which using like title.
-     - parameter icon: Object of `UIImage`, using like icon.
+     - parameter icon: Object of `UIImage`, using like icon. Usually Apple doesn't use icon in this button.
      - parameter colorise: Color of button in default state.
      */
-    public func set(title: String, icon: UIImage?, colorise: SPDimmedButton.Colorise) {
+    public func set(title: String, icon: UIImage? = nil, colorise: SPDimmedButton.Colorise) {
         setTitle(title)
         if let icon = icon {
             setImage(icon.alwaysTemplate)
@@ -71,38 +58,16 @@ open class NativeLargeActionButton: SPDimmedButton {
     
     // MARK: - Layout
     
-    /**
-     NativeUIKit: Layout wrapper. Native way for layout button.
-     */
-    open func layout(y: CGFloat) {
-        guard let superview = self.superview else { return }
-        sizeToFit()
-        let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
-        frame.setWidth(width)
-        setXCenter()
-        frame.origin.y = y
-    }
-    
-    /**
-     NativeUIKit: Layout wrapper. Native way for layout button.
-     */
-    open func layout(maxY: CGFloat) {
-        guard let superview = self.superview else { return }
-        sizeToFit()
-        let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
-        frame.setWidth(width)
-        setXCenter()
-        frame.setMaxY(maxY)
-    }
-    
     open override func layoutSubviews() {
         super.layoutSubviews()
-        roundCorners(radius: NativeAppearance.Corners.readable_area)
+        roundMinimumSide()
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         let superSize = super.sizeThatFits(size)
-        let width = superSize.width
+        var width = superSize.width
+        let minimumWidth: CGFloat = 70
+        if width < minimumWidth { width = minimumWidth }
         
         var height = superSize.height
         if let titleLabel = titleLabel, let imageView = imageView, let _ = imageView.image {
@@ -117,28 +82,8 @@ open class NativeLargeActionButton: SPDimmedButton {
     
     // MARK: - Ovveride
     
-    open override var isHighlighted: Bool {
-        didSet {
-            switch higlightStyle {
-            case .content:
-                for view in [imageView, titleLabel] { view?.alpha = isHighlighted ? highlightOpacity : 1 }
-            case .background:
-                let color = backgroundColor
-                backgroundColor = color?.withAlphaComponent(isHighlighted ? highlightOpacity : 1)
-            }
-        }
-    }
-    
-    // MARK: - Models
-    
-    public enum HiglightStyle {
-        
-        case content
-        case background
-        
-        static var `default`: HiglightStyle {
-            return .background
-        }
+    open override func setTitle(_ title: String?, for state: UIControl.State) {
+        super.setTitle(title?.uppercased(), for: state)
     }
 }
 #endif

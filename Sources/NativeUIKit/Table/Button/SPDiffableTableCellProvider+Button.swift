@@ -21,39 +21,24 @@
 
 #if canImport(UIKit) && (os(iOS))
 import UIKit
-import SparrowKit
+import SPDiffable
 
-open class NativeHeaderTextFieldController: NativeHeaderController {
+@available(iOS 13.0, *)
+extension SPDiffableTableCellProvider {
     
-    // MARK: - Views
-    
-    public let textField = NativeLargeTextField().do {
-        $0.returnKeyType = .done
-        $0.autocapitalizationType = .words
-    }
-    
-    public let footerView = NativeFooterView()
-    
-    // MARK: - Lifecycle
-    
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            view.backgroundColor = .systemBackground
+    public static var button: SPDiffableTableCellProvider  {
+        return SPDiffableTableCellProvider() { (tableView, indexPath, item) -> UITableViewCell? in
+            guard let item = item as? NativeDiffableLeftButton else { return nil }
+            let cell = tableView.dequeueReusableCell(withClass: NativeLeftButtonTableViewCell.self, for: indexPath)
+            cell.textLabel?.text = item.text
+            cell.textLabel?.textColor = item.textColor
+            cell.detailTextLabel?.text = item.detail
+            cell.detailTextLabel?.textColor = item.detailColor
+            cell.imageView?.image = item.icon
+            cell.accessoryType = item.accessoryType
+            cell.higlightStyle = .content
+            return cell
         }
-        scrollView.addSubviews(textField, footerView)
-        dismissKeyboardWhenTappedAround()
-    }
-    
-    // MARK: - Layout
-    
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        textField.layout(y: headerView.frame.maxY + NativeLayout.Spaces.default + NativeLayout.Spaces.default_half)
-        footerView.setWidthAndFit(width: textField.frame.width)
-        footerView.frame.origin.x = textField.frame.origin.x
-        footerView.frame.origin.y = textField.frame.maxY
-        scrollView.contentSize = .init(width: view.frame.width, height: footerView.frame.maxY)
     }
 }
 #endif

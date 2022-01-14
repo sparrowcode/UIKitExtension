@@ -23,37 +23,38 @@
 import UIKit
 import SparrowKit
 
-open class NativeHeaderTextFieldController: NativeHeaderController {
+@available(iOS 13.0, *)
+open class NativeHeaderFullWidthImageController: SPScrollController {
     
     // MARK: - Views
-    
-    public let textField = NativeLargeTextField().do {
-        $0.returnKeyType = .done
-        $0.autocapitalizationType = .words
+
+    public let headerImageView = SPImageView().do {
+        $0.backgroundColor = .systemGray.alpha(0.1)
+        $0.contentMode = .scaleAspectFill
     }
     
-    public let footerView = NativeFooterView()
+    public let titlesView = NativeModalHeaderView()
     
     // MARK: - Lifecycle
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            view.backgroundColor = .systemBackground
-        }
-        scrollView.addSubviews(textField, footerView)
-        dismissKeyboardWhenTappedAround()
+        view.backgroundColor = .secondarySystemBackground
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.addSubviews([headerImageView, titlesView])
+        navigationController?.navigationBar.setAppearance(.transparentAlways)
     }
     
     // MARK: - Layout
     
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        textField.layout(y: headerView.frame.maxY + NativeLayout.Spaces.default + NativeLayout.Spaces.default_half)
-        footerView.setWidthAndFit(width: textField.frame.width)
-        footerView.frame.origin.x = textField.frame.origin.x
-        footerView.frame.origin.y = textField.frame.maxY
-        scrollView.contentSize = .init(width: view.frame.width, height: footerView.frame.maxY)
+        headerImageView.frame = .init(x: .zero, y: -scrollView.layoutMargins.top, width: view.frame.width, height: view.frame.height * 0.45)
+        titlesView.layout(y: headerImageView.frame.maxY + NativeLayout.Spaces.default_double)
+        scrollView.contentSize = .init(
+            width: view.frame.width,
+            height: titlesView.frame.maxY + NativeLayout.Spaces.default_double
+        )
     }
 }
 #endif

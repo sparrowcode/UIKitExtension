@@ -1,5 +1,5 @@
 // The MIT License (MIT)
-// Copyright © 2021 Ivan Vorobei (hello@ivanvorobei.by)
+// Copyright © 2020 Ivan Vorobei (hello@ivanvorobei.by)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,58 +23,58 @@
 import UIKit
 import SparrowKit
 
-open class NativeLargeTextField: SPInsetsTextField {
+open class NativeLargeHeaderView: SPView {
+
+    // MARK: - Views
+    
+    public let titleLabel = SPLabel().do {
+        $0.font = UIFont.preferredFont(forTextStyle: .title2, weight: .semibold)
+        if #available(iOS 13.0, *) {
+            $0.textColor = .label
+        } else {
+            $0.textColor = .black
+        }
+    }
+    
+    public let button = SPDimmedButton().do {
+        $0.applyDefaultAppearance(with: .tintedContent)
+    }
     
     // MARK: - Init
     
     open override func commonInit() {
         super.commonInit()
-        if #available(iOS 13.0, *) {
-            backgroundColor = .secondarySystemBackground
-        } else {
-            backgroundColor = .white
-        }
-        layer.cornerRadius = NativeAppearance.Corners.readable_area
-        textAlignment = .center
-        clearButtonMode = .whileEditing
-        contentMode = .scaleAspectFit
-        font = .preferredFont(forTextStyle: .title2, weight: .bold, addPoints: .zero)
-        adjustsFontSizeToFitWidth = true
-        minimumFontSize = 16
-        insets = .init(horizontal: 48, vertical: 14)
-    }
-    
-    // MARK: - Lifecycle
-    
-    open override func tintColorDidChange() {
-        super.tintColorDidChange()
-        textColor = tintColor
+        layoutMargins = .init(top: 32, left: .zero, bottom: 14, right: .zero)
+        insetsLayoutMarginsFromSafeArea = false
+        preservesSuperviewLayoutMargins = false
+        addSubviews(titleLabel, button)
     }
     
     // MARK: - Layout
     
-    /**
-     NativeUIKit: Layout wrapper. Native way for layout button.
-     */
     open func layout(y: CGFloat) {
         guard let superview = self.superview else { return }
-        sizeToFit()
-        let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
-        frame.setWidth(width)
+        setWidthAndFit(width: superview.layoutWidth)
         setXCenter()
         frame.origin.y = y
     }
     
-    /**
-     NativeUIKit: Layout wrapper. Native way for layout button.
-     */
-    open func layout(maxY: CGFloat) {
-        guard let superview = self.superview else { return }
-        sizeToFit()
-        let width = min(superview.readableWidth, NativeLayout.Sizes.actionable_area_maximum_width)
-        frame.setWidth(width)
-        setXCenter()
-        frame.setMaxY(maxY)
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        titleLabel.layoutDynamicHeight(
+            x: layoutMargins.left,
+            y: layoutMargins.top,
+            width: layoutWidth
+        )
+        button.sizeToFit()
+        button.setMaxXToSuperviewRightMargin()
+        button.center.y = titleLabel.center.y
+    }
+    
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        let superSize = super.sizeThatFits(size)
+        layoutSubviews()
+        return .init(width: superSize.width, height: titleLabel.frame.maxY + layoutMargins.bottom)
     }
 }
 #endif

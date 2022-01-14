@@ -49,7 +49,7 @@ open class NativeHeaderController: SPScrollController {
     
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        headerView.layout(y: .zero)
+        headerView.layout(y: NativeLayout.Spaces.default)
         scrollView.contentSize = .init(width: view.frame.width, height: headerView.frame.maxY)
     }
 }
