@@ -35,7 +35,7 @@ open class NativeLeftButtonTableViewCell: SPTableViewCell {
     
     open override func commonInit() {
         super.commonInit()
-        textLabel?.font = .preferredFont(forTextStyle: .body, weight: .semibold)
+        textLabel?.font = .preferredFont(forTextStyle: .body, weight: .medium)
         higlightStyle = .content
     }
     

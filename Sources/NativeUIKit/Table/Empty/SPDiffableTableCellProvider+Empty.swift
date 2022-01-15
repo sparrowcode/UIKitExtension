@@ -21,36 +21,20 @@
 
 #if canImport(UIKit) && (os(iOS))
 import UIKit
-import SparrowKit
 import SPDiffable
 
 @available(iOS 13.0, *)
-open class NativeDiffableMenuTableRow: SPDiffableTableRow {
+extension SPDiffableTableCellProvider {
     
-    open var textColor: UIColor
-    open var detailColor: UIColor
-    
-    public init(
-        id: String? = nil,
-        text: String,
-        textColor: UIColor = .label,
-        detail: String? = nil,
-        detailColor: UIColor = .secondaryLabel,
-        icon: UIImage? = nil,
-        accessoryType: UITableViewCell.AccessoryType = .none,
-        action: SPDiffableTableRow.Action? = nil
-    ) {
-        self.textColor = textColor
-        self.detailColor = detailColor
-        
-        super.init(
-            id: id,
-            text: text,
-            detail: detail,
-            icon: icon,
-            accessoryType: accessoryType,
-            action: action
-        )
+    public static var empty: SPDiffableTableCellProvider  {
+        return SPDiffableTableCellProvider() { (tableView, indexPath, item) -> UITableViewCell? in
+            guard let item = item as? NativeEmptyRowItem else { return nil }
+            let cell = tableView.dequeueReusableCell(withClass: NativeEmptyTableViewCell.self, for: indexPath)
+            cell.placeholderView.headerLabel.text = item.text
+            cell.placeholderView.descriptionLabel.text = item.detail
+            cell.verticalMargins = item.verticalMargins
+            return cell
+        }
     }
 }
 #endif

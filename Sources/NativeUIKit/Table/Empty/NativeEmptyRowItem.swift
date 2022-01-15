@@ -22,17 +22,16 @@
 #if canImport(UIKit) && (os(iOS))
 import UIKit
 import SparrowKit
+import SPDiffable
 
-open class NativeMenuTableViewCell: SPTableViewCell {
+@available(iOS 13.0, *)
+open class NativeEmptyRowItem: SPDiffableTableRow {
     
-    open override func commonInit() {
-        super.commonInit()
-        higlightStyle = .content
-    }
+    var verticalMargins: NativeEmptyTableViewCell.Margins
     
-    open override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let superSize = super.sizeThatFits(size)
-        return .init(width: superSize.width, height: superSize.height + 4)
+    public init(id: String, verticalMargins: NativeEmptyTableViewCell.Margins, text: String, detail: String?) {
+        self.verticalMargins = verticalMargins
+        super.init(id: id, text: text, detail: detail)
     }
 }
 #endif
