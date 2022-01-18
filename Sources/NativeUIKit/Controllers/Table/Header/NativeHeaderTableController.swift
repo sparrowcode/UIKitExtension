@@ -56,8 +56,7 @@ open class NativeHeaderTableController: SPDiffableTableController {
             cachedHeaderHeight = headerContainerView.frame.height
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                guard let snapshot = self.diffableDataSource?.snapshot() else { return }
-                self.diffableDataSource?.apply(snapshot)
+                self.diffableDataSource?.updateLayout(animated: true, completion: nil)
             }
         }
     }

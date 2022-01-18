@@ -24,10 +24,10 @@ import UIKit
 import SPDiffable
 
 @available(iOS 13.0, *)
-extension SPDiffableTableCellProvider {
+extension SPDiffableTableDataSource.CellProvider {
     
-    public static var button: SPDiffableTableCellProvider  {
-        return SPDiffableTableCellProvider() { (tableView, indexPath, item) -> UITableViewCell? in
+    public static var button: SPDiffableTableDataSource.CellProvider  {
+        return SPDiffableTableDataSource.CellProvider() { (tableView, indexPath, item) -> UITableViewCell? in
             guard let item = item as? NativeDiffableLeftButton else { return nil }
             let cell = tableView.dequeueReusableCell(withClass: NativeLeftButtonTableViewCell.self, for: indexPath)
             cell.textLabel?.text = item.text

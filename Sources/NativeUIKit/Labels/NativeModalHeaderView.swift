@@ -33,7 +33,7 @@ open class NativeModalHeaderView: SPView {
     
     public let iconImageView = SPImageView().do {
         $0.contentMode = .scaleAspectFit
-        $0.tintColor = UIColor.tintColor
+        $0.tintColor = UIColor.tint
     }
     
     public let titleLabel = SPLabel().do {

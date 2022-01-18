@@ -24,10 +24,10 @@ import UIKit
 import SPDiffable
 
 @available(iOS 13.0, *)
-extension SPDiffableTableHeaderFooterProvider {
+extension SPDiffableTableDataSource.HeaderFooterProvider {
     
-    public static var largeHeader: SPDiffableTableHeaderFooterProvider  {
-        return SPDiffableTableHeaderFooterProvider() { (tableView, indexPath, item) -> UIView? in
+    public static var largeHeader: SPDiffableTableDataSource.HeaderFooterProvider  {
+        return SPDiffableTableDataSource.HeaderFooterProvider() { (tableView, indexPath, item) -> UIView? in
             guard let header = item as? NativeLargeHeader else { return nil }
             let view = NativeLargeHeaderView()
             view.titleLabel.text = header.title

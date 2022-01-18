@@ -44,6 +44,7 @@ open class NativeHeaderController: SPScrollController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.contentInset.bottom = NativeLayout.Spaces.Scroll.bottom_inset_reach_end
         scrollView.addSubview(headerView)
     }
     

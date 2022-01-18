@@ -24,10 +24,10 @@ import UIKit
 import SPDiffable
 
 @available(iOS 13.0, *)
-extension SPDiffableTableCellProvider {
+extension SPDiffableTableDataSource.CellProvider {
     
-    public static var empty: SPDiffableTableCellProvider  {
-        return SPDiffableTableCellProvider() { (tableView, indexPath, item) -> UITableViewCell? in
+    public static var empty: SPDiffableTableDataSource.CellProvider  {
+        return SPDiffableTableDataSource.CellProvider() { (tableView, indexPath, item) -> UITableViewCell? in
             guard let item = item as? NativeEmptyRowItem else { return nil }
             let cell = tableView.dequeueReusableCell(withClass: NativeEmptyTableViewCell.self, for: indexPath)
             cell.placeholderView.headerLabel.text = item.text
