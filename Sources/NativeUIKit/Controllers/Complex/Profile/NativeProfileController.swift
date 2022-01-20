@@ -33,8 +33,8 @@ open class NativeProfileController: NativeHeaderTableController {
     
     // MARK: - Init
     
-    public init() {
-        super.init(style: .insetGrouped, headerView: headerView)
+    public init(style: UITableView.Style = .insetGrouped) {
+        super.init(style: style, headerView: headerView)
     }
     
     public required init?(coder: NSCoder) {
