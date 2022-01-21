@@ -88,7 +88,7 @@ open class NativeAvatarView: SPView {
     }
     
     open var placeholderImage = UIImage.system("person.crop.circle.fill", font: .systemFont(ofSize: 80, weight: .medium))
-    open var placeholderColorise = SPDimmedButton.Colorise.init(content: .init(light: .systemGray4, dark: .systemGray2), background: .clear)
+    open var placeholderColorise = SPDimmedButton.Colorise.init(content: .init(light: .systemGray3, dark: .systemGray2), background: .clear)
     open var indicatorAddImage = UIImage.system("plus", font: .preferredFont(forTextStyle: .title3, weight: .bold))
     open var indicatorAddColorise = SPDimmedButton.Colorise.init(content: .white, background: .systemGreen)
     open var indicatorEditImage = UIImage.system("pencil", font: .preferredFont(forTextStyle: .title3, weight: .bold))

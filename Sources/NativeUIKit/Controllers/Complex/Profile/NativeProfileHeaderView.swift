@@ -38,8 +38,8 @@ open class NativeProfileHeaderView: SPView {
         $0.textColor = .label
         $0.numberOfLines = 1
         $0.textAlignment = .center
-        $0.adjustsFontSizeToFitWidth = true
-        $0.minimumScaleFactor = 0.5
+        // $0.adjustsFontSizeToFitWidth = true
+        // $0.minimumScaleFactor = 0.5
         $0.text = nil
     }
     
@@ -48,17 +48,16 @@ open class NativeProfileHeaderView: SPView {
         $0.textColor = .secondaryLabel
         $0.numberOfLines = 1
         $0.textAlignment = .center
-        $0.adjustsFontSizeToFitWidth = true
-        $0.minimumScaleFactor = 0.5
+        // $0.adjustsFontSizeToFitWidth = true
+        // $0.minimumScaleFactor = 0.5
         $0.text = nil
     }
     
     // Add tap to clipboard
     public let emailButton = SPDimmedButton().do {
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body, weight: .regular, addPoints: -2)
-        $0.titleLabel?.adjustsFontSizeToFitWidth = true
-        $0.titleLabel?.minimumScaleFactor = 0.5
-        $0.setTitle(.space)
+        // $0.titleLabel?.adjustsFontSizeToFitWidth = true
+        // $0.titleLabel?.minimumScaleFactor = 0.5
         $0.titleImageInset = 2
     }
     
@@ -103,7 +102,7 @@ open class NativeProfileHeaderView: SPView {
     // MARK: - Layout
     
     private var usingNameLabel: SPLabel {
-        if nameLabel.text == nil {
+        if nameLabel.text?.isEmptyContent ?? true {
             return namePlaceholderLabel
         } else {
             return nameLabel

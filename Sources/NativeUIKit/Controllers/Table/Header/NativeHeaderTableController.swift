@@ -36,13 +36,18 @@ open class NativeHeaderTableController: SPDiffableTableController {
     public init(style: UITableView.Style, headerView: UIView) {
         self.headerContainerView = HeaderContainerView(contentView: headerView)
         super.init(style: style)
-        headerContainerView.setWidthAndFit(width: view.frame.width)
-        tableView.tableHeaderView = headerContainerView
-        
     }
     
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Lifecycle
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        headerContainerView.setWidthAndFit(width: view.frame.width)
+        tableView.tableHeaderView = headerContainerView
     }
     
     // MARK: - Layout
