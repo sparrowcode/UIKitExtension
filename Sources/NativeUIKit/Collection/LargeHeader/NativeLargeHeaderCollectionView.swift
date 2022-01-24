@@ -19,62 +19,34 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#if canImport(UIKit) && (os(iOS))
 import UIKit
 import SparrowKit
 
-open class NativeLargeTitleCollectionViewCell: SPCollectionViewCell {
+open class NativeLargeHeaderCollectionView: SPCollectionReusableView {
     
-    // MARK: - Views
-    
-    public let titleLabel = SPLabel().do {
-        $0.font = UIFont.preferredFont(forTextStyle: .title1, weight: .bold, addPoints: .zero)
-        if #available(iOS 13.0, *) {
-            $0.textColor = .label
-        } else {
-            $0.textColor = .black
-        }
-    }
-    
-    // MARK: - Init
+    public let headerView = NativeLargeHeaderView()
     
     open override func commonInit() {
         super.commonInit()
-        contentView.layoutMargins = .init(top: 32, left: .zero, bottom: 8, right: .zero)
         insetsLayoutMarginsFromSafeArea = false
-        contentView.insetsLayoutMarginsFromSafeArea = false
-        preservesSuperviewLayoutMargins = false
-        contentView.preservesSuperviewLayoutMargins = false
-        addSubview(titleLabel)
+        layoutMargins = .zero
+        addSubview(headerView)
     }
-    
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel.text = nil
-        parentLayout = nil
-    }
-    
-    // MARK: - Layout
-    
-    open weak var parentLayout: UIView?
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        if let parentLayout = parentLayout {
-            contentView.layoutMargins.left = parentLayout.layoutMargins.left
-            contentView.layoutMargins.right = parentLayout.layoutMargins.right
-        }
-        titleLabel.layoutDynamicHeight(
-            x: contentView.layoutMargins.left,
-            y: contentView.layoutMargins.top,
-            width: contentView.layoutWidth
-        )
+        headerView.layout(y: layoutMargins.top)
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         let superSize = super.sizeThatFits(size)
-        layoutSubviews()
-        return .init(width: superSize.width, height: titleLabel.frame.maxY + contentView.layoutMargins.bottom)
+        return .init(width: superSize.width, height: headerView.frame.height + layoutMargins.bottom)
+    }
+    
+    static public func size(for item: NativeLargeHeaderItem, in collectionView: UICollectionView) -> CGSize {
+        let view = NativeLargeHeaderView()
+        view.configure(with: item)
+        view.setWidthAndFit(width: collectionView.layoutWidth)
+        return .init(width: collectionView.frame.width, height: view.frame.height)
     }
 }
-#endif

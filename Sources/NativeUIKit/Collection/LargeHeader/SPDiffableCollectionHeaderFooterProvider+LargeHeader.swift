@@ -19,20 +19,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#if canImport(UIKit) && (os(iOS))
 import UIKit
 import SPDiffable
 
 @available(iOS 13.0, *)
-extension SPDiffableTableDataSource.HeaderFooterProvider {
+extension SPDiffableCollectionDataSource.HeaderFooterProvider {
     
-    public static var largeHeader: SPDiffableTableDataSource.HeaderFooterProvider  {
-        return SPDiffableTableDataSource.HeaderFooterProvider() { (tableView, indexPath, item) -> UIView? in
+    public static var largeHeader: SPDiffableCollectionDataSource.HeaderFooterProvider  {
+        return SPDiffableCollectionDataSource.HeaderFooterProvider.init { collectionView, kind, indexPath, item in
             guard let header = item as? NativeLargeHeaderItem else { return nil }
-            let view = NativeLargeHeaderView()
-            view.configure(with: header)
+            let view = collectionView.dequeueReusableSupplementaryView(withCalss: NativeLargeHeaderCollectionView.self, kind: kind, for: indexPath)
+            view.headerView.configure(with: header)
             return view
         }
     }
 }
-#endif

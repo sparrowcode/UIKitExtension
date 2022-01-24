@@ -26,7 +26,7 @@ import SPDiffable
 /**
  SPDiffable: Native large header with button.
  */
-open class NativeLargeHeader: SPDiffableItem, SPDiffableItemActionable {
+open class NativeLargeHeaderItem: SPDiffableItem, SPDiffableItemActionable {
     
     open var title: String
     open var actionTitle: String?
