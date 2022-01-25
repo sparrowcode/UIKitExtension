@@ -13,9 +13,18 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(name: "SparrowKit", url: "https://github.com/ivanvorobei/SparrowKit", .exact("3.5.0")),
-        .package(name: "SPPerspective", url: "https://github.com/ivanvorobei/SPPerspective", .exact("1.4.1")),
-        .package(name: "SPDiffable", url: "https://github.com/ivanvorobei/SPDiffable", .exactItem("4.0.0"))
+        .package(
+            name: "SparrowKit",
+            url: "https://github.com/ivanvorobei/SparrowKit", .upToNextMajor(from: "3.5.0")
+        ),
+        .package(
+            name: "SPPerspective",
+            url: "https://github.com/ivanvorobei/SPPerspective", .upToNextMajor(from: "1.4.1")
+        ),
+        .package(
+            name: "SPDiffable",
+            url: "https://github.com/ivanvorobei/SPDiffable", .upToNextMajor(from: "4.0.0")
+        )
     ],
     targets: [
         .target(

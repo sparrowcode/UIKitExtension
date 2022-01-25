@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/ivanvorobei/SparrowKit",
         "state": {
           "branch": null,
-          "revision": "910918bf80fbfbf78366cd9d10c4441fbfcd61e2",
-          "version": "3.4.8"
+          "revision": "ec3da50d713713d43b26a3e191f33f9930fd0e82",
+          "version": "3.5.0"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/ivanvorobei/SPDiffable",
         "state": {
           "branch": null,
-          "revision": "84e69c37fac575a46ed27e4dc95042903b5bf0cd",
-          "version": "2.2.0"
+          "revision": "d09a126517371bc34080d0f2dad70ffd724f862e",
+          "version": "4.0.0"
         }
       },
       {
