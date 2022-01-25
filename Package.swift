@@ -15,15 +15,15 @@ let package = Package(
     dependencies: [
         .package(
             name: "SparrowKit",
-            url: "https://github.com/ivanvorobei/SparrowKit", .upToNextMajor(from: "3.5.0")
+            url: "https://github.com/ivanvorobei/SparrowKit", .exact("3.5.1")
         ),
         .package(
             name: "SPPerspective",
-            url: "https://github.com/ivanvorobei/SPPerspective", .upToNextMajor(from: "1.4.1")
+            url: "https://github.com/ivanvorobei/SPPerspective", .exact("1.4.1")
         ),
         .package(
             name: "SPDiffable",
-            url: "https://github.com/ivanvorobei/SPDiffable", .upToNextMajor(from: "4.0.0")
+            url: "https://github.com/ivanvorobei/SPDiffable", .exact("4.0.1")
         )
     ],
     targets: [
