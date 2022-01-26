@@ -27,10 +27,10 @@ import SPDiffable
 extension SPDiffableTableDataSource.HeaderFooterProvider {
     
     public static var largeHeader: SPDiffableTableDataSource.HeaderFooterProvider  {
-        return SPDiffableTableDataSource.HeaderFooterProvider() { (tableView, indexPath, item) -> UIView? in
+        return SPDiffableTableDataSource.HeaderFooterProvider() { (tableView, section, item) -> UIView? in
             guard let header = item as? NativeLargeHeaderItem else { return nil }
             let view = NativeLargeHeaderView()
-            view.configure(with: header)
+            view.configure(with: header, section: section)
             return view
         }
     }

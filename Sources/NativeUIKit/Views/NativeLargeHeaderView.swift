@@ -22,6 +22,7 @@
 #if canImport(UIKit) && (os(iOS))
 import UIKit
 import SparrowKit
+import SPDiffable
 
 open class NativeLargeHeaderView: SPView {
 
@@ -44,7 +45,7 @@ open class NativeLargeHeaderView: SPView {
     
     open override func commonInit() {
         super.commonInit()
-        layoutMargins = .init(top: 32, left: .zero, bottom: 14, right: .zero)
+        layoutMargins = .init(top: NativeLayout.Spaces.default_double, left: .zero, bottom: 14, right: .zero)
         insetsLayoutMarginsFromSafeArea = false
         preservesSuperviewLayoutMargins = false
         addSubviews(titleLabel, button)
@@ -75,6 +76,22 @@ open class NativeLargeHeaderView: SPView {
         let superSize = super.sizeThatFits(size)
         layoutSubviews()
         return .init(width: superSize.width, height: titleLabel.frame.maxY + layoutMargins.bottom)
+    }
+    
+    // MARK: - Private
+    
+    var diffableButtonAction: (()->Void)? = nil {
+        didSet {
+            if let _ = diffableButtonAction {
+                self.button.addTarget(self, action: #selector(self.diffableButtonTargetAction), for: .touchUpInside)
+            } else {
+                self.button.removeTargetsAndActions()
+            }
+        }
+    }
+    
+    @objc func diffableButtonTargetAction() {
+        self.diffableButtonAction?()
     }
 }
 #endif

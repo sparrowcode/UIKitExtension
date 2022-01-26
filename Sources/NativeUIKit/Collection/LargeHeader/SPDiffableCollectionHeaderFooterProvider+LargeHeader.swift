@@ -29,7 +29,7 @@ extension SPDiffableCollectionDataSource.HeaderFooterProvider {
         return SPDiffableCollectionDataSource.HeaderFooterProvider.init { collectionView, kind, indexPath, item in
             guard let header = item as? NativeLargeHeaderItem else { return nil }
             let view = collectionView.dequeueReusableSupplementaryView(withCalss: NativeLargeHeaderCollectionView.self, kind: kind, for: indexPath)
-            view.headerView.configure(with: header)
+            view.headerView.configure(with: header, section: indexPath.section)
             return view
         }
     }

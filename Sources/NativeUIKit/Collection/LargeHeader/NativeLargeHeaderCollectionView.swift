@@ -45,7 +45,7 @@ open class NativeLargeHeaderCollectionView: SPCollectionReusableView {
     
     static public func size(for item: NativeLargeHeaderItem, in collectionView: UICollectionView) -> CGSize {
         let view = NativeLargeHeaderView()
-        view.configure(with: item)
+        view.configure(with: item, section: .zero)
         view.setWidthAndFit(width: collectionView.layoutWidth)
         return .init(width: collectionView.frame.width, height: view.frame.height)
     }
