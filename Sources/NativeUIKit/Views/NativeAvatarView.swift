@@ -43,6 +43,8 @@ open class NativeAvatarView: SPView {
     public lazy var avatarButton = SPButton().do {
         $0.imageView?.contentMode = .scaleAspectFill
         $0.layer.masksToBounds = true
+        $0.contentVerticalAlignment = .fill
+        $0.contentHorizontalAlignment = .fill
     }
     
     public lazy var placeholderButton = SPDimmedButton().do {

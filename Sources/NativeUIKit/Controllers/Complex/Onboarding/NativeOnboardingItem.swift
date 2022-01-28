@@ -1,5 +1,5 @@
 // The MIT License (MIT)
-// Copyright © 2020 Ivan Vorobei (hello@ivanvorobei.by)
+// Copyright © 2021 Ivan Vorobei (hello@ivanvorobei.by)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,22 +21,18 @@
 
 #if canImport(UIKit) && (os(iOS))
 import UIKit
-import SPDiffable
+import SparrowKit
 
-/**
- SPDiffable: Native large header with button.
- */
-open class NativeLargeHeaderItem: SPDiffableItem, SPDiffableItemActionable {
+public class NativeOnboardingItem {
     
-    open var title: String
-    open var actionTitle: String?
-    open var action: Action?
+    let iconImage: UIImage
+    let title: String
+    let description: String
     
-    public init(id: String? = nil, title: String, actionTitle: String? = nil, action: Action? = nil) {
+    public init(iconImage: UIImage, title: String, description: String) {
+        self.iconImage = iconImage
         self.title = title
-        self.actionTitle = actionTitle
-        self.action = action
-        super.init(id: id ?? title)
+        self.description = description
     }
 }
 #endif
