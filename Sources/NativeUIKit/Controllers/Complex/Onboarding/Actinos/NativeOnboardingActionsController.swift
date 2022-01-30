@@ -23,22 +23,17 @@
 import UIKit
 import SparrowKit
 
-open class NativeOnboardingController: NativeHeaderController {
+open class NativeOnboardingActionsController: NativeHeaderController {
     
-    // MARK: - Data
-    
-    private let items: [NativeOnboardingItem]
-    private var itemViews: [NativeOnboardingItemView] = []
+    private var views: [NativeOnbiardingActionButton] = []
     
     // MARK: - Init
     
     public init(
         iconImage: UIImage?,
         title: String,
-        subtitle: String,
-        items: [NativeOnboardingItem]
+        subtitle: String
     ) {
-        self.items = items
         super.init(image: iconImage, title: title, subtitle: subtitle)
     }
     
@@ -55,8 +50,21 @@ open class NativeOnboardingController: NativeHeaderController {
         } else {
             view.backgroundColor = .white
         }
-        itemViews = items.map({ NativeOnboardingItemView(item: $0) })
-        scrollView.addSubviews(itemViews)
+        scrollView.addSubviews(views)
+    }
+    
+    open func setActions(_ models: [NativeOnbiardingActionButton.ActionModel]) {
+        // Clean old
+        views.forEach({ $0.removeFromSuperview() })
+        views.removeAll()
+        
+        // Add new
+        views = models.map({ NativeOnbiardingActionButton(with: $0) })
+        
+        // Added like subviews
+        if isViewLoaded {
+            scrollView.addSubviews(views)
+        }
     }
     
     // MARK: - Layout
@@ -64,31 +72,14 @@ open class NativeOnboardingController: NativeHeaderController {
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         var currentYPosition = headerView.frame.maxY + NativeLayout.Spaces.default_double
-        for (_, itemView) in itemViews.enumerated() {
-            itemView.setWidthAndFit(width: scrollView.readableWidth)
+        let elementWidth: CGFloat = min(scrollView.readableWidth, 320)
+        for (_, itemView) in views.enumerated() {
+            itemView.setWidthAndFit(width: elementWidth)
             itemView.setXCenter()
             itemView.frame.origin.y = currentYPosition
             currentYPosition = itemView.frame.maxY + NativeLayout.Spaces.default_half
         }
-        scrollView.contentSize = .init(width: scrollView.frame.width, height: itemViews.last?.frame.maxY ?? .zero)
-    }
-    
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        for itemView in itemViews {
-            let progress = progressForItemView(itemView)
-            itemView.setProgress(progress)
-        }
-    }
-    
-    private func progressForItemView(_ itemView: NativeOnboardingItemView) -> CGFloat {
-        let offsetY = scrollView.contentOffset.y + scrollView.safeAreaInsets.top + scrollView.frame.height - scrollView.safeAreaInsets.bottom
-        let correction: CGFloat = NativeLayout.Spaces.Scroll.bottom_inset_reach_end
-        let topSafeArea = scrollView.safeAreaInsets.top + correction
-        let startPosition = itemView.frame.origin.y + topSafeArea
-        let progress = (offsetY - startPosition) / itemView.frame.height
-        if progress < .zero { return .zero }
-        if progress > 1 { return 1 }
-        return progress
+        scrollView.contentSize = .init(width: scrollView.frame.width, height: views.last?.frame.maxY ?? .zero)
     }
 }
 #endif

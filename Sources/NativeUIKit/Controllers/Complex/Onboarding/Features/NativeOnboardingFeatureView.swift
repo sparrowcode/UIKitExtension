@@ -23,7 +23,11 @@
 import UIKit
 import SparrowKit
 
-public class NativeOnboardingItemView: SPView {
+public class NativeOnboardingFeatureView: SPView {
+    
+    // MARK: - Data
+    
+    let model: FeatureModel
     
     // MARK: - Views
     
@@ -53,11 +57,12 @@ public class NativeOnboardingItemView: SPView {
     
     // MARK: - Init
     
-    init(item: NativeOnboardingItem) {
+    init(with model: FeatureModel) {
+        self.model = model
         super.init()
-        iconView.image = item.iconImage
-        titleLabel.text = item.title
-        descriptionLabel.text = item.description
+        iconView.image = model.iconImage
+        titleLabel.text = model.title
+        descriptionLabel.text = model.description
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -101,6 +106,26 @@ public class NativeOnboardingItemView: SPView {
     func setProgress(_ value: CGFloat) {
         if #available(iOS 13.0, *) {
             self.backgroundColor = .secondarySystemBackground.alpha(1 - value)
+        }
+    }
+    
+    // MARK: - Models
+    
+    /**
+     Wrapper of data for feature model.
+     
+     - important: Recomended use custom tint color for icons like native.
+     */
+    public class FeatureModel {
+        
+        let iconImage: UIImage
+        let title: String
+        let description: String
+        
+        public init(iconImage: UIImage, title: String, description: String) {
+            self.iconImage = iconImage
+            self.title = title
+            self.description = description
         }
     }
 }
