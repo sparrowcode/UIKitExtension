@@ -59,6 +59,7 @@ open class NativeProfileHeaderView: SPView {
         // $0.titleLabel?.adjustsFontSizeToFitWidth = true
         // $0.titleLabel?.minimumScaleFactor = 0.5
         $0.titleImageInset = 2
+        $0.titleLabel?.textAlignment = .center
     }
     
     // MARK: - Private
@@ -117,15 +118,20 @@ open class NativeProfileHeaderView: SPView {
         avatarView.setXCenter()
         avatarView.frame.origin.y = layoutMargins.top
         
-        nameLabel.layoutDynamicHeight(width: layoutWidth)
+        let textWidth: CGFloat = layoutWidth * 0.8
+        
+        nameLabel.layoutDynamicHeight(width: textWidth)
         nameLabel.setXCenter()
         nameLabel.frame.origin.y = avatarView.frame.maxY + NativeLayout.Spaces.default_half
         
-        namePlaceholderLabel.layoutDynamicHeight(width: layoutWidth)
+        namePlaceholderLabel.layoutDynamicHeight(width: textWidth)
         namePlaceholderLabel.setXCenter()
         namePlaceholderLabel.frame.origin.y = nameLabel.frame.origin.y
         
         emailButton.sizeToFit()
+        if emailButton.frame.width > textWidth {
+            emailButton.frame.setWidth(textWidth)
+        }
         emailButton.setXCenter()
         emailButton.frame.origin.y = usingNameLabel.frame.maxY
     }
