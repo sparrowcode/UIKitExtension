@@ -29,6 +29,7 @@ open class NativeDiffableLeftButton: SPDiffableTableRow {
     
     open var textColor: UIColor
     open var detailColor: UIColor
+    open var higlightStyle: SPTableViewCell.HiglightStyle
     
     public init(
         id: String? = nil,
@@ -38,10 +39,12 @@ open class NativeDiffableLeftButton: SPDiffableTableRow {
         detailColor: UIColor = .secondaryLabel,
         icon: UIImage? = nil,
         accessoryType: UITableViewCell.AccessoryType = .none,
+        higlightStyle: SPTableViewCell.HiglightStyle = .content,
         action: SPDiffableTableRow.Action? = nil
     ) {
         self.textColor = textColor
         self.detailColor = detailColor
+        self.higlightStyle = higlightStyle
         
         super.init(
             id: id,
@@ -49,7 +52,6 @@ open class NativeDiffableLeftButton: SPDiffableTableRow {
             detail: detail,
             icon: icon,
             accessoryType: accessoryType,
-            selectionStyle: .none,
             action: action
         )
     }

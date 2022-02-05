@@ -36,7 +36,7 @@ extension SPDiffableTableDataSource.CellProvider {
             cell.detailTextLabel?.textColor = item.detailColor
             cell.imageView?.image = item.icon
             cell.accessoryType = item.accessoryType
-            cell.higlightStyle = .content
+            cell.higlightStyle = item.higlightStyle
             return cell
         }
     }
