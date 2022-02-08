@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name = 'NativeUIKit'
-  s.version = '1.2.9'
+  s.version = '1.3.1'
   s.summary = 'Mimicrated views and controls to native Apple appearance.'
   s.homepage = 'https://github.com/ivanvorobei/NativeUIKit'
   s.source = { :git => 'https://github.com/ivanvorobei/NativeUIKit.git', :tag => s.version }
