@@ -22,9 +22,10 @@
 import UIKit
 import SPDiffable
 
-@available(iOS 13.0, *)
+@available(iOS 13.0, tvOS 13.0, *)
 extension SPDiffableCollectionDataSource.HeaderFooterProvider {
     
+    #if (os(iOS))
     public static var largeHeader: SPDiffableCollectionDataSource.HeaderFooterProvider  {
         return SPDiffableCollectionDataSource.HeaderFooterProvider.init { collectionView, kind, indexPath, item in
             guard let header = item as? NativeLargeHeaderItem else { return nil }
@@ -33,4 +34,5 @@ extension SPDiffableCollectionDataSource.HeaderFooterProvider {
             return view
         }
     }
+    #endif
 }

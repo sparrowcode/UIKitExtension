@@ -5,7 +5,9 @@ import PackageDescription
 let package = Package(
     name: "NativeUIKit",
     platforms: [
-        .iOS(.v12), .tvOS(.v12), .watchOS(.v6)
+        .iOS(.v12),
+        .tvOS(.v12),
+        .watchOS(.v6)
     ],
     products: [
         .library(
@@ -23,7 +25,7 @@ let package = Package(
         ),
         .package(
             name: "SPDiffable",
-            url: "https://github.com/ivanvorobei/SPDiffable", .upToNextMajor(from: "4.0.1")
+            url: "https://github.com/ivanvorobei/SPDiffable", .upToNextMajor(from: "4.0.6")
         )
     ],
     targets: [
