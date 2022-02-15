@@ -89,12 +89,41 @@ open class NativeAvatarView: SPView {
         }
     }
     
-    open var placeholderImage = UIImage.system("person.crop.circle.fill", font: .systemFont(ofSize: 80, weight: .medium))
-    open var placeholderColorise = SPDimmedButton.Colorise.init(content: .init(light: .systemGray3, dark: .systemGray2), background: .clear)
-    open var indicatorAddImage = UIImage.system("plus", font: .preferredFont(forTextStyle: .title3, weight: .bold))
-    open var indicatorAddColorise = SPDimmedButton.Colorise.init(content: .white, background: .systemGreen)
-    open var indicatorEditImage = UIImage.system("pencil", font: .preferredFont(forTextStyle: .title3, weight: .bold))
-    open var indicatorEditColorise = SPDimmedButton.Colorise.init(content: .white, background: .systemBlue)
+    open var placeholderImage = UIImage.system("person.crop.circle.fill", font: .systemFont(ofSize: 80, weight: .medium)) {
+        didSet {
+            placeholderButton.setImage(placeholderImage)
+        }
+    }
+    
+    open var placeholderColorise = SPDimmedButton.Colorise.init(content: .init(light: .systemGray3, dark: .systemGray2), background: .clear) {
+        didSet {
+            placeholderButton.applyDefaultAppearance(with: placeholderColorise)
+        }
+    }
+    
+    open var indicatorAddImage = UIImage.system("plus", font: .preferredFont(forTextStyle: .title3, weight: .bold)) {
+        didSet {
+            updateEditAppearance()
+        }
+    }
+    
+    open var indicatorAddColorise = SPDimmedButton.Colorise.init(content: .white, background: .systemGreen) {
+        didSet {
+            updateEditAppearance()
+        }
+    }
+    
+    open var indicatorEditImage = UIImage.system("pencil", font: .preferredFont(forTextStyle: .title3, weight: .bold)) {
+        didSet {
+            updateEditAppearance()
+        }
+    }
+    
+    open var indicatorEditColorise = SPDimmedButton.Colorise.init(content: .white, background: .systemBlue) {
+        didSet {
+            updateEditAppearance()
+        }
+    }
     
     // MARK: - Init
     
