@@ -15,7 +15,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/ivanvorobei/SparrowKit", .upToNextMajor(from: "3.5.6")),
+        .package(url: "https://github.com/ivanvorobei/SparrowKit", .upToNextMajor(from: "3.5.7")),
         .package(url: "https://github.com/ivanvorobei/SPPerspective", .upToNextMajor(from: "1.4.1")),
         .package(url: "https://github.com/ivanvorobei/SPDiffable", .upToNextMajor(from: "4.0.6"))
     ],
