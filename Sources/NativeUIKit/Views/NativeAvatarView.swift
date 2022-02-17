@@ -89,7 +89,7 @@ open class NativeAvatarView: SPView {
         }
     }
     
-    open var placeholderImage = UIImage.system("person.crop.circle.fill", font: .systemFont(ofSize: 80, weight: .medium)) {
+    open var placeholderImage = generatePlaceholderImage(fontSize: 80, fontWeight: .medium) {
         didSet {
             placeholderButton.setImage(placeholderImage)
         }
@@ -164,10 +164,23 @@ open class NativeAvatarView: SPView {
         placeholderButton.sizeToFit()
         frame.setWidth(placeholderButton.frame.width + layoutMargins.left + layoutMargins.right)
         layoutSubviews()
-        return .init(
-            width: max(placeholderButton.frame.maxX, indicatorButton.frame.maxX) + layoutMargins.bottom,
-            height: max(placeholderButton.frame.maxY, indicatorButton.frame.maxY) + layoutMargins.bottom
-        )
+        if isEditable {
+            return .init(
+                width: max(placeholderButton.frame.maxX, indicatorButton.frame.maxX) + layoutMargins.bottom,
+                height: max(placeholderButton.frame.maxY, indicatorButton.frame.maxY) + layoutMargins.bottom
+            )
+        } else {
+            return .init(
+                width: placeholderButton.frame.maxX + layoutMargins.bottom,
+                height: placeholderButton.frame.maxY + layoutMargins.bottom
+            )
+        }
+    }
+    
+    // MARK: - Public
+    
+    static public func generatePlaceholderImage(fontSize: CGFloat, fontWeight: UIFont.Weight) -> UIImage {
+        return UIImage.system("person.crop.circle.fill", font: .systemFont(ofSize: fontSize, weight: fontWeight))
     }
     
     // MARK: - Internal
