@@ -15,9 +15,10 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/ivanvorobei/SparrowKit", .upToNextMajor(from: "3.5.7")),
+        .package(url: "https://github.com/ivanvorobei/SparrowKit", .upToNextMajor(from: "3.5.8")),
         .package(url: "https://github.com/ivanvorobei/SPPerspective", .upToNextMajor(from: "1.4.1")),
-        .package(url: "https://github.com/ivanvorobei/SPDiffable", .upToNextMajor(from: "4.0.6"))
+        .package(url: "https://github.com/ivanvorobei/SPDiffable", .upToNextMajor(from: "4.0.6")),
+        .package(url: "https://github.com/ivanvorobei/SPPageController", .upToNextMajor(from: "1.3.2"))
     ],
     targets: [
         .target(
@@ -25,7 +26,8 @@ let package = Package(
             dependencies: [
                 .product(name: "SparrowKit", package: "SparrowKit"),
                 .product(name: "SPPerspective", package: "SPPerspective"),
-                .product(name: "SPDiffable", package: "SPDiffable")
+                .product(name: "SPDiffable", package: "SPDiffable"),
+                .product(name: "SPPageController", package: "SPPageController")
             ],
             swiftSettings: [
                 .define("NATIVEUIKIT_SPM")

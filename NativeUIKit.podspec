@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name = 'NativeUIKit'
-  s.version = '1.4.0'
+  s.version = '1.4.1'
   s.summary = 'Mimicrated views and controls to native Apple appearance.'
   s.homepage = 'https://github.com/ivanvorobei/NativeUIKit'
   s.source = { :git => 'https://github.com/ivanvorobei/NativeUIKit.git', :tag => s.version }
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '12.0'
 
   s.source_files = 'Sources/NativeUIKit/**/*.swift'
-  s.dependency 'SparrowKit', '~> 3.5.7'
+  s.dependency 'SparrowKit', '~> 3.5.8'
   s.dependency 'SPPerspective', '~> 1.4.1'
   s.dependency 'SPDiffable', '~> 4.0.5'
 
