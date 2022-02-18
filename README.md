@@ -32,7 +32,6 @@ If you like the project, don't forget to `put star ★`<br>Check out my other li
 
 - [Installation](#installation)
     - [Swift Package Manager](#swift-package-manager)
-    - [CocoaPods](#cocoapods)
     - [Manually](#manually)
 - [Classes](#usage)
     - [NativeLargeActionButton](#NativeLargeActionButton)
@@ -57,14 +56,6 @@ To integrate using Xcode 12, specify it in `File > Swift Packages > Add Package 
 
 ```ogdl
 https://github.com/ivanvorobei/NativeUIKit
-```
-
-### CocoaPods:
-
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-pod 'NativeUIKit'
 ```
 
 ### Manually
