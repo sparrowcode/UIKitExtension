@@ -14,6 +14,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Sources/NativeUIKit/**/*.swift'
   s.dependency 'SparrowKit', '~> 3.5.8'
+  s.dependency 'SPPageController', '~> 1.3.2'
   s.dependency 'SPPerspective', '~> 1.4.1'
   s.dependency 'SPDiffable', '~> 4.0.5'
 
