@@ -23,7 +23,7 @@ Mimicrated views and controls to native Apple appearance. If you have any ideas 
 If you like the project, don't forget to `put star ★`<br>Check out my other libraries:
 
 <p float="left">
-    <a href="https://opensource.ivanvorobei.by">
+    <a href="https://opensource.ivanvorobei.io">
         <img src="https://github.com/ivanvorobei/Readme/blob/main/Buttons/more-libraries.svg">
     </a>
 </p>
@@ -70,7 +70,7 @@ If you prefer not to use any of dependency managers, you can integrate manually.
 Usually used at the bottom of the screen. You can set an icon. You can set how to change the style when you click. Supports states `disabled` and `dimmed`.
 
 <p float="left">
-    <a href="https://opensource.ivanvorobei.by">
+    <a href="https://opensource.ivanvorobei.io">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeLargeActionButton.svg">
     </a>
 </p>
@@ -105,7 +105,7 @@ You definitely saw this button in the AppStore. You can use it without the icon.
 Supports states `disabled` and `dimmed`.
 
 <p float="left">
-    <a href="https://opensource.ivanvorobei.by">
+    <a href="https://opensource.ivanvorobei.io">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeSmallActionButton.svg">
     </a>
 </p>
@@ -134,7 +134,7 @@ button.sizeToFit()
 
 ### [NativeAvatarView](https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativeAvatarView.swift)
 
-<a href="https://opensource.ivanvorobei.by">
+<a href="https://opensource.ivanvorobei.io">
     <img align="left" src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativeAvatarView.svg"/>
 </a>
 
@@ -163,7 +163,7 @@ avatarView.frame = .init(x: 0, y: 0, width: 60, height: 60)
 ### [NativePlayPauseCompactButton](https://github.com/ivanvorobei/NativeUIKit/blob/main/Sources/NativeUIKit/NativePlayPauseCompactButton.swift)
 
 <p float="left">
-    <a href="https://opensource.ivanvorobei.by">
+    <a href="https://opensource.ivanvorobei.io">
         <img src="https://github.com/ivanvorobei/NativeUIKit/blob/main/Assets/Readme/Elements/NativePlayPauseCompactButton.svg">
     </a>
 </p>
@@ -180,18 +180,18 @@ button.appearance = .play //.pause
 
 ## Сontribution
 
-My English is very bad. You can see this once you read the documentation. I would really like to have clean and nice documentation. If you see gramatical errors and can help fix the Readme, please contact me hello@ivanvorobei.by or make a Pull Request. Thank you in advance!
+My English is very bad. You can see this once you read the documentation. I would really like to have clean and nice documentation. If you see gramatical errors and can help fix the Readme, please contact me hello@ivanvorobei.io or make a Pull Request. Thank you in advance!
 
 ## Other Projects
 
-I love being helpful. Here I have provided a list of libraries that I keep up to date. For see `video previews` of libraries without install open [opensource.ivanvorobei.by](https://opensource.ivanvorobei.by) website.<br>
+I love being helpful. Here I have provided a list of libraries that I keep up to date. For see `video previews` of libraries without install open [opensource.ivanvorobei.io](https://opensource.ivanvorobei.io) website.<br>
 I have libraries with native interface and managing permissions. Also available pack of useful extensions for boost your development process.
 
 <p float="left">
-    <a href="https://opensource.ivanvorobei.by">
+    <a href="https://opensource.ivanvorobei.io">
         <img src="https://github.com/ivanvorobei/Readme/blob/main/Buttons/more-libraries.svg">
     </a>
-        <a href="https://xcodeshop.ivanvorobei.by">
+        <a href="https://xcodeshop.ivanvorobei.io">
         <img src="https://github.com/ivanvorobei/Readme/blob/main/Buttons/xcode-shop.svg">
     </a>
 </p>
@@ -202,14 +202,14 @@ I have libraries with native interface and managing permissions. Also available 
 Со сложными и непонятными задачами помогут в чате.
 
 <p float="left">
-    <a href="https://tutorials.ivanvorobei.by/telegram/channel">
+    <a href="https://tutorials.ivanvorobei.io/telegram/channel">
         <img src="https://github.com/ivanvorobei/Readme/blob/main/Buttons/open-telegram-channel.svg">
     </a>
-    <a href="https://tutorials.ivanvorobei.by/telegram/chat">
+    <a href="https://tutorials.ivanvorobei.io/telegram/chat">
         <img src="https://github.com/ivanvorobei/Readme/blob/main/Buttons/russian-community-chat.svg">
     </a>
 </p>
 
-Видео-туториалы выклыдываю на [YouTube](https://tutorials.ivanvorobei.by/youtube):
+Видео-туториалы выклыдываю на [YouTube](https://tutorials.ivanvorobei.io/youtube):
 
-[![Tutorials on YouTube](https://cdn.ivanvorobei.by/github/readme/youtube-preview.jpg)](https://tutorials.ivanvorobei.by/youtube)
+[![Tutorials on YouTube](https://cdn.ivanvorobei.io/github/readme/youtube-preview.jpg)](https://tutorials.ivanvorobei.io/youtube)

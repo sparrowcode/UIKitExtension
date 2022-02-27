@@ -23,33 +23,57 @@
 import UIKit
 import SparrowKit
 
-open class NativeMimicrateToolBarView: NativeMimicrateBarView {
+@available(iOS 13.0, *)
+open class NativeAvatarHeaderView: SPView {
+    
+    // MARK: - Public
+    
+    public let avatarView = NativeAvatarView().do {
+        $0.avatarAppearance = .placeholder
+        $0.isEditable = true
+    }
+    
+    // MARK: - Private
+    
+    private var extendView = SPView()
     
     // MARK: - Init
     
-    public init() {
-        super.init(borderPosition: .top)
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     open override func commonInit() {
         super.commonInit()
-        insetsLayoutMarginsFromSafeArea = false
-        layoutMargins.top = 16
+        backgroundColor = .clear
+        addSubviews([extendView, avatarView])
+        
+        layoutMargins = .init(
+            top: NativeLayout.Spaces.default,
+            left: NativeLayout.Spaces.default_double,
+            bottom: NativeLayout.Spaces.default,
+            right: NativeLayout.Spaces.default_double
+        )
+    }
+    
+    // MARK: - Ovveride
+    
+    open override var backgroundColor: UIColor? {
+        didSet {
+            extendView.backgroundColor = backgroundColor
+        }
     }
     
     // MARK: - Layout
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        guard let superview = superview else { return }
-        let contentWidth = min(440, superview.readableWidth)
-        let horizontalMargin = (frame.width - contentWidth) / 2
-        layoutMargins.left = horizontalMargin
-        layoutMargins.right = horizontalMargin
+        extendView.frame = .init(x: .zero, maxY: .zero, width: frame.width, height: 1000)
+        
+        avatarView.sizeToFit()
+        avatarView.setXCenter()
+        avatarView.frame.origin.y = layoutMargins.top
+    }
+    
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        layoutSubviews()
+        return .init(width: frame.width, height: avatarView.frame.maxY + layoutMargins.bottom)
     }
 }
 #endif

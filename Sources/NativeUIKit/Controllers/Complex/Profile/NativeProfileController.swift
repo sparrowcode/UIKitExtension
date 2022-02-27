@@ -1,5 +1,5 @@
 // The MIT License (MIT)
-// Copyright © 2021 Ivan Vorobei (hello@ivanvorobei.by)
+// Copyright © 2021 Ivan Vorobei (hello@ivanvorobei.io)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@ open class NativeProfileController: NativeHeaderTableController {
 
     // MARK: - Views
     
-    public let headerView = NativeProfileHeaderView()
+    public let headerView = NativeAvatarHeaderView()
     
     // MARK: - Init
     
