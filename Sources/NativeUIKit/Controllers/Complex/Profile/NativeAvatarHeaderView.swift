@@ -47,7 +47,7 @@ open class NativeAvatarHeaderView: SPView {
         layoutMargins = .init(
             top: NativeLayout.Spaces.default,
             left: NativeLayout.Spaces.default_double,
-            bottom: NativeLayout.Spaces.default,
+            bottom: NativeLayout.Spaces.default_more,
             right: NativeLayout.Spaces.default_double
         )
     }
