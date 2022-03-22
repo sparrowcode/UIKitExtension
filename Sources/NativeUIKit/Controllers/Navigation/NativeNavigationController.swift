@@ -40,6 +40,28 @@ open class NativeNavigationController: SPNavigationController {
         }
     }
     
+    open override func setToolbarHidden(_ hidden: Bool, animated: Bool) {
+        if let barView = mimicrateToolBarView {
+            if animated {
+                
+                if barView.isHidden && !hidden {
+                    barView.isHidden = false
+                    barView.alpha = .zero
+                }
+                
+                UIView.animate(withDuration: 0.12, delay: .zero, options: [.beginFromCurrentState, .curveEaseInOut], animations: {
+                    barView.alpha = hidden ? .zero : 1
+                }) { completed in
+                    barView.isHidden = hidden
+                }
+            } else {
+                barView.isHidden = hidden
+            }
+        } else {
+            super.setToolbarHidden(hidden, animated: animated)
+        }
+    }
+    
     // MARK: - Layout
     
     open override func viewDidLayoutSubviews() {
