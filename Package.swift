@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "NativeUIKit",
+    name: "UIKitExtension",
     platforms: [
         .iOS(.v12),
         .tvOS(.v12),
@@ -11,26 +11,15 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "NativeUIKit", targets: ["NativeUIKit"]
+            name: "UIKitExtension", targets: ["UIKitExtension"]
         )
     ],
-    dependencies: [
-        .package(url: "https://github.com/ivanvorobei/SparrowKit", .upToNextMajor(from: "3.6.0")),
-        .package(url: "https://github.com/ivanvorobei/SPPerspective", .upToNextMajor(from: "1.4.1")),
-        .package(url: "https://github.com/ivanvorobei/SPDiffable", .upToNextMajor(from: "4.1.0")),
-        .package(url: "https://github.com/ivanvorobei/SPPageController", .upToNextMajor(from: "1.3.2"))
-    ],
+    dependencies: [],
     targets: [
         .target(
-            name: "NativeUIKit",
-            dependencies: [
-                .product(name: "SparrowKit", package: "SparrowKit"),
-                .product(name: "SPPerspective", package: "SPPerspective"),
-                .product(name: "SPDiffable", package: "SPDiffable"),
-                .product(name: "SPPageController", package: "SPPageController")
-            ],
+            name: "UIKitExtension",
             swiftSettings: [
-                .define("NATIVEUIKIT_SPM")
+                .define("UIKITEXTENSION_SPM")
             ]
         )
     ],
