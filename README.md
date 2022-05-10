@@ -23,14 +23,14 @@
 
 ## Installation
 
-Ready to use on iOS 11+. Supports iOS, tvOS, and `SwiftUI`.
+Ready to use on iOS 12+, tvOS 12+, watchOS 6.0+.
 
 ### Swift Package Manager
 
 In Xcode go to `File` -> `Packages` -> `Update to Latest Package Versions` and insert url: 
 
 ```
-https://github.com/sparrowcode/SwiftBoost
+https://github.com/sparrowcode/UIKitExtension
 ```
 
 or adding it to the `dependencies` value of your `Package.swift`:
@@ -43,7 +43,7 @@ dependencies: [
 
 ### Manually
 
-If you prefer not to use any of dependency managers, you can integrate manually. Put `Sources/SwiftBoost` folder in your Xcode project. Make sure to enable `Copy items if needed` and `Create groups`.
+If you prefer not to use any of dependency managers, you can integrate manually. Put `Sources/UIKitExtension` folder in your Xcode project. Make sure to enable `Copy items if needed` and `Create groups`.
 
 ## Apps Using
 
