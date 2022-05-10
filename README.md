@@ -3,7 +3,7 @@
 ### Community
 
 <p float="left">
-    <a href="https://discord.gg/K9SKMTKVNH">
+    <a href="https://discord.gg/F53WFDgfWP">
         <img src="https://cdn.sparrowcode.io/github/badges/discord.png?version=2" height="52">
     </a>
     <a href="#apps-using">
@@ -17,7 +17,7 @@
 ## Navigate
 
 - [Installation](#installation)
-    - [Swift Package Manager](#swift-package-manager)\
+    - [Swift Package Manager](#swift-package-manager)
     - [Manually](#manually)
 - [Apps Using](#apps-using)
 
