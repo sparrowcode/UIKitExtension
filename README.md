@@ -23,7 +23,7 @@
 
 ## Installation
 
-Ready to use on iOS 12+, tvOS 12+, watchOS 6.0+.
+Ready to use on iOS 13+, tvOS 13+ & watchOS 6+
 
 ### Swift Package Manager
 
