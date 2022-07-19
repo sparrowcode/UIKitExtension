@@ -6,8 +6,7 @@ let package = Package(
     name: "UIKitExtension",
     platforms: [
         .iOS(.v13), 
-        .tvOS(.v13), 
-        .watchOS(.v6)
+        .tvOS(.v13)
     ],
     products: [
         .library(
@@ -15,10 +14,15 @@ let package = Package(
             targets: ["UIKitExtension"]
         )
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/sparrowcode/SwiftBoost", .upToNextMajor(from: "4.0.0")),
+    ],
     targets: [
         .target(
             name: "UIKitExtension",
+            dependencies: [
+                .product(name: "SwiftBoost", package: "SwiftBoost")
+            ],
             swiftSettings: [
                 .define("UIKITEXTENSION_SPM")
             ]
