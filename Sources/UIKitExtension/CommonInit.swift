@@ -12,7 +12,7 @@ public protocol UICommonInit {
     func commonInit()
 }
 
-class UICommonView: UIView, UICommonInit {
+open class UICommonView: UIView, UICommonInit {
     
     public init() {
         super.init(frame: CGRect.zero)
@@ -70,6 +70,34 @@ open class UICommonButton: UIButton, UICommonInit {
     }
     
     open func commonInit() {}
+    
+    // MARK: - Layout
+    
+    /**
+     UIKitExtension: Inset between image and title.
+     
+     No need any additional processing layout.
+     It work automatically in `layoutSubviews` method.
+     */
+    open var titleImageInset: CGFloat? = nil
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        if let inset = titleImageInset {
+            if imageView?.image == nil {
+                imageEdgeInsets.right = .zero
+                titleEdgeInsets.left = .zero
+            } else {
+                if ltr {
+                    imageEdgeInsets.right = inset
+                    titleEdgeInsets.left = inset
+                } else {
+                    imageEdgeInsets.right = -inset
+                    titleEdgeInsets.left = -inset
+                }
+            }
+        }
+    }
 }
 
 open class UICommonImageView: UIImageView, UICommonInit {
