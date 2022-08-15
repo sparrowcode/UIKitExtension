@@ -250,4 +250,19 @@ open class UICommonTableViewCell: UITableViewCell, UICommonInit {
     
     open func commonInit() {}
 }
+
+open class UICommonTableViewHeaderFooterView: UITableViewHeaderFooterView {
+    
+    public override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        commonInit()
+    }
+    
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+
+    open func commonInit() {}
+}
 #endif
