@@ -1,6 +1,6 @@
 import UIKit
 
-open class UICommonNavigationController: UINavigationController, UICommonInit {
+open class UICommonNavigationController: UINavigationController, UICommonInit, UINavigationControllerDelegate {
     
     // MARK: - Init
     
@@ -22,7 +22,9 @@ open class UICommonNavigationController: UINavigationController, UICommonInit {
         super.init(navigationBarClass: navigationBarClass, toolbarClass: toolbarClass)
     }
     
-    open func commonInit() {}
+    open func commonInit() {
+        delegate = self
+    }
     
     // MARK: - Layout
     
@@ -46,7 +48,7 @@ open class UICommonNavigationController: UINavigationController, UICommonInit {
         if inheritLayoutMarginsForNavigationBar {
             
             let leftMargin = view.layoutMargins.left
-            let rightMargin = view.layoutMargins.left
+            let rightMargin = view.layoutMargins.right
             
             if navigationBar.layoutMargins.left != leftMargin {
                 navigationBar.layoutMargins.left = leftMargin
@@ -61,7 +63,7 @@ open class UICommonNavigationController: UINavigationController, UICommonInit {
         if inheritLayoutMarginsForСhilds {
             
             let leftMargin = view.layoutMargins.left
-            let rightMargin = view.layoutMargins.left
+            let rightMargin = view.layoutMargins.right
             
             for childController in viewControllers {
                 if childController.view.layoutMargins.left != leftMargin {

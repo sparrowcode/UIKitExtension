@@ -10,32 +10,21 @@ open class UILargeHeaderTableView: UICommonTableViewHeaderFooterView {
         super.commonInit()
         insetsLayoutMarginsFromSafeArea = false
         contentView.layoutMargins = .zero
+        contentView.layoutMargins.left = Spaces.default_half
+        contentView.preservesSuperviewLayoutMargins = false
+        contentView.insetsLayoutMarginsFromSafeArea = false
         contentView.addSubview(headerView)
     }
     
     open override func layoutSubviews() {
         super.layoutSubviews()
         headerView.setWidthAndFit(width: contentView.layoutWidth)
-        headerView.frame.origin = .init(x: contentView.layoutMargins.left, y: layoutMargins.top)
+        headerView.frame.origin = .init(x: contentView.layoutMargins.left, y: contentView.layoutMargins.top)
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         let superSize = super.sizeThatFits(size)
-        return .init(width: superSize.width, height: headerView.frame.height + layoutMargins.bottom)
-    }
-}
-
-// MARK: - Diffable
-
-open class DiffableLargeHeaderItem: DiffableActionableItem {
-    
-    open var title: String
-    open var actionTitle: String?
-    
-    public init(id: String? = nil, title: String, actionTitle: String? = nil, action: Action? = nil) {
-        self.title = title
-        self.actionTitle = actionTitle
-        super.init(id: id ?? title, action: action)
+        return .init(width: superSize.width, height: headerView.frame.maxY + contentView.layoutMargins.bottom)
     }
 }
 
@@ -45,12 +34,14 @@ extension DiffableTableDataSource.HeaderFooterProvider {
         return DiffableTableDataSource.HeaderFooterProvider() { (tableView, section, item) -> UIView? in
             guard let header = item as? DiffableLargeHeaderItem else { return nil }
             let view = tableView.dequeueReusableHeaderFooterView(withClass: UILargeHeaderTableView.self)
-            view.headerView.titleLabel.text = header.title
-            if let actionTitle = header.actionTitle {
-                view.headerView.button.setTitle(actionTitle)
-                view.headerView.diffableButtonAction = {
+            view.headerView.button.setTitle(header.title)
+            if #available(iOS 14.0, *) {
+                view.headerView.button.addAction(.init(handler: { _ in
                     header.action?(item, .init(row: .zero, section: section))
-                }
+                }), for: .touchUpInside)
+            } else {
+                #warning("add for ios 13")
+            
             }
             return view
         }

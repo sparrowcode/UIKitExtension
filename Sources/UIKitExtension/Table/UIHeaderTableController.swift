@@ -6,9 +6,15 @@ open class UIHeaderTableController: DiffableTableController {
     // MARK: - Public
     
     open func setHeaderView(_ view: UIView) {
-        let headerContainerView = HeaderContainerView(contentView: view)
-        headerContainerView.setWidthAndFit(width: self.view.frame.width)
-        tableView.tableHeaderView = headerContainerView
+        let containerView = HeaderContainerView(contentView: view)
+        //headerContainerView.setWidthAndFit(width: self.view.frame.width)
+        tableView.tableHeaderView = containerView
+    }
+    
+    open func setFooterView(_ view: UIView) {
+        let containerView = HeaderContainerView(contentView: view)
+        //headerContainerView.setWidthAndFit(width: self.view.frame.width)
+        tableView.tableFooterView = containerView
     }
     
     open func setSpaceBetweenHeaderAndCells(_ value: CGFloat) {
@@ -20,27 +26,40 @@ open class UIHeaderTableController: DiffableTableController {
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if let headerContainerView = tableView.tableHeaderView as? HeaderContainerView {
-            
-            if headerContainerView.contentView.layoutMargins.left != tableView.layoutMargins.left {
-                headerContainerView.contentView.layoutMargins.left = tableView.layoutMargins.left
-            }
-            
-            if headerContainerView.contentView.layoutMargins.right != tableView.layoutMargins.right {
-                headerContainerView.contentView.layoutMargins.right = tableView.layoutMargins.right
-            }
-            
-            headerContainerView.setWidthAndFit(width: view.frame.width)
-            
-            if cachedHeaderHeight != headerContainerView.frame.height {
-                cachedHeaderHeight = headerContainerView.frame.height
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.diffableDataSource?.updateLayout(animated: true, completion: nil)
+        for view in [tableView.tableHeaderView, tableView.tableFooterView] {
+            if let containerView = view as? HeaderContainerView {
+                if containerView.contentView.layoutMargins.left != tableView.layoutMargins.left {
+                    containerView.contentView.layoutMargins.left = tableView.layoutMargins.left
+                }
+                
+                if containerView.contentView.layoutMargins.right != tableView.layoutMargins.right {
+                    containerView.contentView.layoutMargins.right = tableView.layoutMargins.right
+                }
+                
+                containerView.setWidthAndFit(width: self.view.frame.width)
+                
+                if view == tableView.tableHeaderView && cachedHeaderHeight != containerView.frame.height  {
+                    let animated = (cachedHeaderHeight == nil) ? false : true
+                    cachedHeaderHeight = containerView.frame.height
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        self.diffableDataSource?.updateLayout(animated: animated, completion: nil)
+                    }
+                }
+                
+                if view == tableView.tableFooterView && cachedFooterHeight != containerView.frame.height  {
+                    let animated = (cachedHeaderHeight == nil) ? false : true
+                    cachedFooterHeight = containerView.frame.height
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        self.diffableDataSource?.updateLayout(animated: animated, completion: nil)
+                    }
                 }
             }
         }
+        
     }
     
     private var cachedHeaderHeight: CGFloat? = nil
+    private var cachedFooterHeight: CGFloat? = nil
 }

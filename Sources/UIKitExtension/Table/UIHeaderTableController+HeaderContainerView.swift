@@ -22,7 +22,6 @@ extension UIHeaderTableController {
         public override func commonInit() {
             super.commonInit()
             insetsLayoutMarginsFromSafeArea = false
-            contentView.insetsLayoutMarginsFromSafeArea = false
             layoutMargins = .zero
             addSubview(contentView)
         }
@@ -39,6 +38,7 @@ extension UIHeaderTableController {
         public override func sizeThatFits(_ size: CGSize) -> CGSize {
             frame.setWidth(size.width)
             layoutSubviews()
+            //print(size.width, contentView.frame.maxY, layoutMargins.bottom)
             return .init(width: size.width, height: contentView.frame.maxY + layoutMargins.bottom)
         }
     }

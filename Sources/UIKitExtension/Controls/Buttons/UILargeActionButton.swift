@@ -17,7 +17,7 @@ open class UILargeActionButton: UIDimmedButton {
         titleLabel?.numberOfLines = 1
         titleImageInset = 6
         contentEdgeInsets = .init(horizontal: 10, vertical: 12)
-        roundCorners(radius: Appearance.Corners.readable_area)
+        roundCorners(curve: .continuous, radius: Appearance.Corners.readable_area)
     }
     
     // MARK: - Layout
@@ -50,16 +50,19 @@ open class UILargeActionButton: UIDimmedButton {
         let superSize = super.sizeThatFits(size)
         let width = superSize.width
         
+        let height = superSize.height
+        /* Disabled image correction becouse
+         returned other values and its confused lauout system.
+         For now disabled.
+         
         // When set image, height may change.
         // It's allow save height of button.
-        var height = superSize.height
         if let titleLabel = titleLabel, let imageView = imageView, let _ = imageView.image {
             if titleLabel.frame.height > .zero && imageView.frame.height > .zero {
                 let imageCorrection = imageView.frame.height - titleLabel.frame.height
                 height -= imageCorrection
             }
-        }
-        
+        }*/
         return CGSize(width: width, height: height)
     }
     

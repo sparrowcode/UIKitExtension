@@ -265,4 +265,19 @@ open class UICommonTableViewHeaderFooterView: UITableViewHeaderFooterView {
 
     open func commonInit() {}
 }
+
+open class UICommonCollectionReusableView: UICollectionReusableView {
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    
+    open func commonInit() {}
+}
 #endif
