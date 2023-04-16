@@ -54,8 +54,13 @@ open class UILargeHeaderView: UICommonView {
         button.contentEdgeInsets.right = spacing
         
         button.sizeToFit()
-        button.frame.origin.x = layoutMargins.left
+        
         button.frame.origin.y = layoutMargins.top
+        if ltr {
+            button.frame.origin.x = layoutMargins.left
+        } else {
+            button.frame.setMaxX(frame.width - layoutMargins.right)
+        }
         
         let buttonWidth = button.frame.width
         let imageWidth = button.imageView?.frame.width ?? .zero
