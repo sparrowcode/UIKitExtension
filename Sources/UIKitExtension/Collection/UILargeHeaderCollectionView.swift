@@ -48,7 +48,7 @@ extension DiffableCollectionDataSource.HeaderFooterProvider {
                         action(item, .init(row: .zero, section: section))
                     }), for: .touchUpInside)
                 } else {
-                    view.headerView.showChevron = false
+                    view.headerView.showChevron = true
                 }
             } else {
                 #warning("add for ios 13")

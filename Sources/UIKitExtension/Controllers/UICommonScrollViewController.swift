@@ -2,13 +2,17 @@ import UIKit
 
 open class UICommonScrollViewController: UICommonViewContoller {
     
-    public lazy var scrollView = UIScrollView()
+    public lazy var scrollView = UICommonScrollView()
     
     open override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.delaysContentTouches = false
         view.addSubview(scrollView)
+        
+        if #available(iOS 15.0, *) {
+            setContentScrollView(scrollView)
+        }
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

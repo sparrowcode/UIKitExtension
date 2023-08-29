@@ -9,10 +9,10 @@ extension UIPageContainerController {
         
         // MARK: - Init
         
-        init(dataSource: UIPageContainerControllerDataSource) {
+        init(dataSource: UIPageContainerControllerDataSource, initialIndex: Int = .zero) {
             self.controllersDataSource = dataSource
             super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
-            guard let firstController = getViewController(for: .zero) else { return }
+            guard let firstController = getViewController(for: initialIndex) else { return }
             setViewControllers([firstController], direction: .forward, animated: false)
         }
         
@@ -69,7 +69,12 @@ extension UIPageContainerController {
         // todo complete
         func safeScrollTo(index: Int, animated: Bool) {
             guard let controller = getViewController(for: index) else { return }
-            setViewControllers([controller], direction: .forward, animated: true)
+            setViewControllers([controller], direction: .forward, animated: animated)
+            
+        }
+        
+        func getCurrentController() -> UIViewController? {
+            return viewControllers?.first
         }
         
         // MARK: - UIPageViewControllerDataSource
@@ -81,8 +86,9 @@ extension UIPageContainerController {
                 if newIndex < 0 { return nil }
                 return childControllers[newIndex]
             } else {
-                guard let indexAfter = (viewController as? UIPageContainerControllerIndexProtocol)?.pageControllerIndex else { fatalError() }
-                return getViewController(for: indexAfter - 1)
+                print("vv \(viewController)")
+                guard let currentIndex = (viewController as? UIPageContainerControllerIndexProtocol)?.pageControllerIndex else { fatalError() }
+                return getViewController(for: currentIndex - 1)
             }
         }
         
@@ -94,6 +100,7 @@ extension UIPageContainerController {
                 return childControllers[newIndex]
             } else {
                 guard let indexBefore = (viewController as? UIPageContainerControllerIndexProtocol)?.pageControllerIndex else { fatalError() }
+                print("currentIndex before \(indexBefore)")
                 return getViewController(for: indexBefore + 1)
             }
         }
@@ -101,6 +108,7 @@ extension UIPageContainerController {
         // MARK: - Internal
         
         private func getViewController(for index: Int) -> UIViewController? {
+            print("ask controller for index \(index) in page")
             guard let controller = controllersDataSource?.pageContainerViewController(for: index) else { return nil }
             guard var indexController = controller as? UIPageContainerControllerIndexProtocol else { fatalError() }
             indexController.pageControllerIndex = index

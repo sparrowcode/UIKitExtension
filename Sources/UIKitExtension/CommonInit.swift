@@ -32,6 +32,26 @@ open class UICommonView: UIView, UICommonInit {
     open func commonInit() {}
 }
 
+open class UICommonScrollView: UIScrollView, UICommonInit {
+    
+    public init() {
+        super.init(frame: CGRect.zero)
+        commonInit()
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    open func commonInit() {}
+}
+
 open class UICommonControl: UIControl, UICommonInit {
     
     public init() {

@@ -16,7 +16,8 @@ open class UILargeActionButton: UIDimmedButton {
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline, addPoints: 1)
         titleLabel?.numberOfLines = 1
         titleImageInset = 6
-        contentEdgeInsets = .init(horizontal: 10, vertical: 12)
+        // before was 12, 14 looks little better
+        contentEdgeInsets = .init(horizontal: 10, vertical: 14)
         roundCorners(curve: .continuous, radius: Appearance.Corners.readable_area)
     }
     

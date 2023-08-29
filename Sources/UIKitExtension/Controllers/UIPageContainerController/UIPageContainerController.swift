@@ -6,10 +6,17 @@ open class UIPageContainerController: UIViewController {
     
     // todo clean to
     
-    public func scrollToPage(index: Int) {
+    public func scrollToPage(index: Int, animated: Bool) {
         if let pageController = containerController as? UIPageScrollSystemController {
-            pageController.safeScrollTo(index: index, animated: true)
+            pageController.safeScrollTo(index: index, animated: animated)
         }
+    }
+    
+    public func getCurrentController() -> UIViewController? {
+        if let pageController = containerController as? UIPageScrollSystemController {
+            return pageController.getCurrentController()
+        }
+        return nil
     }
     
     public init(data: UIPageContainerControllerDataSystem, scrollSystem: UIPageContainerControllerScrollSystem) {

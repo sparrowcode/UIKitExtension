@@ -21,19 +21,22 @@ open class UIHeaderTableController: DiffableTableController {
         tableView.tableHeaderView?.layoutMargins.bottom = value
     }
     
+    open func setSpaceBetweenFooterAndCells(_ value: CGFloat) {
+        tableView.tableFooterView?.layoutMargins.top = value
+    }
+    
     // MARK: - Layout
     
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         for view in [tableView.tableHeaderView, tableView.tableFooterView] {
             if let containerView = view as? HeaderContainerView {
-                if containerView.contentView.layoutMargins.left != tableView.layoutMargins.left {
-                    containerView.contentView.layoutMargins.left = tableView.layoutMargins.left
+                if containerView.layoutMargins.left != tableView.layoutMargins.left {
+                    containerView.layoutMargins.left = tableView.layoutMargins.left
                 }
                 
-                if containerView.contentView.layoutMargins.right != tableView.layoutMargins.right {
-                    containerView.contentView.layoutMargins.right = tableView.layoutMargins.right
+                if containerView.layoutMargins.right != tableView.layoutMargins.right {
+                    containerView.layoutMargins.right = tableView.layoutMargins.right
                 }
                 
                 containerView.setWidthAndFit(width: self.view.frame.width)
