@@ -3,6 +3,13 @@ import UIKit
 
 extension UIColor {
     
+    public static var secondarySystemGroupedBorder: UIColor {
+        return .init(
+            light: secondarySystemGroupedBackground.darker(by: 0.1),
+            dark: secondarySystemGroupedBackground.lighter(by: 0.1)
+        )
+    }
+    
     /**
      UIKitExtension: New color to system stack.
      Its color for empty areas and it usually downed of main background color.
