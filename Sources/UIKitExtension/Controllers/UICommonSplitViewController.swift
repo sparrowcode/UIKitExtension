@@ -1,6 +1,6 @@
 import UIKit
 
-open class UICommonSplitViewController: UISplitViewController, UISplitViewControllerDelegate {
+open class UICommonSplitViewController: UISplitViewController {
     
     public init() {
         super.init(nibName: nil, bundle: nil)
