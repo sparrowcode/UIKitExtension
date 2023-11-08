@@ -83,7 +83,7 @@ open class NativeSmallActionButton: SPDimmedButton {
     // MARK: - Ovveride
     
     open override func setTitle(_ title: String?, for state: UIControl.State) {
-        super.setTitle(title?.uppercased(), for: state)
+        super.setTitle(title, for: state)
     }
 }
 #endif
