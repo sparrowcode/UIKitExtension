@@ -35,14 +35,9 @@ extension DiffableTableDataSource.HeaderFooterProvider {
             guard let header = item as? DiffableLargeHeaderItem else { return nil }
             let view = tableView.dequeueReusableHeaderFooterView(withClass: UILargeHeaderTableView.self)
             view.headerView.button.setTitle(header.title)
-            if #available(iOS 14.0, *) {
-                view.headerView.button.addAction(.init(handler: { _ in
-                    header.action?(item, .init(row: .zero, section: section))
-                }), for: .touchUpInside)
-            } else {
-                #warning("add for ios 13")
-            
-            }
+            view.headerView.button.addAction(.init(handler: { _ in
+                header.action?(item, .init(row: .zero, section: section))
+            }), for: .touchUpInside)
             return view
         }
     }

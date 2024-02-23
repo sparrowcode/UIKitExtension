@@ -51,6 +51,7 @@ extension DiffableTableDataSource.CellProvider {
             guard let item = item as? DiffableTableTextField else { return nil }
             let cell = tableView.dequeueReusableCell(withClass: UITextFieldTableViewCell.self, for: indexPath)
             cell.titleLabel.text = item.title
+            cell.titleLabel.textColor = .secondaryLabel
             cell.textField.text = item.getTextFieldText()
             cell.textField.placeholder = item.textFieldplaceholder
             cell.textField.addAction(.init(handler: { _ in

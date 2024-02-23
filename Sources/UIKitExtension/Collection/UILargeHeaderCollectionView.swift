@@ -41,18 +41,13 @@ extension DiffableCollectionDataSource.HeaderFooterProvider {
             guard let header = item as? DiffableLargeHeaderItem else { return nil }
             let view = collectionView.dequeueReusableSupplementaryView(withCalss: UILargeHeaderCollectionView.self, kind: UICollectionView.elementKindSectionHeader, for: .init(row: .zero, section: section))
             view.headerView.button.setTitle(header.title)
-            if #available(iOS 14.0, *) {
-                if let action = header.action {
-                    view.headerView.showChevron = true
-                    view.headerView.button.addAction(.init(handler: { _ in
-                        action(item, .init(row: .zero, section: section))
-                    }), for: .touchUpInside)
-                } else {
-                    view.headerView.showChevron = true
-                }
+            if let action = header.action {
+                view.headerView.showChevron = true
+                view.headerView.button.addAction(.init(handler: { _ in
+                    action(item, .init(row: .zero, section: section))
+                }), for: .touchUpInside)
             } else {
-                #warning("add for ios 13")
-                view.headerView.showChevron = false
+                view.headerView.showChevron = true
             }
             view.layoutSubviews()
             return view
